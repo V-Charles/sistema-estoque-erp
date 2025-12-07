@@ -1,0 +1,20 @@
+# Arquivos compilados (Maven)
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# --- NETBEANS (Para garantir compatibilidade) ---
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# --- OUTROS ---
+.DS_Store
+Thumbs.db
