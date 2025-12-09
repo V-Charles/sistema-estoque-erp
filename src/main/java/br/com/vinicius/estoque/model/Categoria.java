@@ -6,6 +6,8 @@ public class Categoria {
     private String nome;
     private boolean ativo;
 
+    public Categoria() { }
+
     public Categoria(Integer id, String nome, boolean ativo){
         this.id = id;
         this.nome = nome;

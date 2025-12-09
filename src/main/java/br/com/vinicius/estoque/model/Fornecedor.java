@@ -9,13 +9,15 @@ public class Fornecedor {
     private String telefone;
     private boolean ativo;
 
-    public Fornecedor(boolean ativo, String telefone, String email, String cnpj, String razaoSocial, Integer id) {
-        this.ativo = ativo;
-        this.telefone = telefone;
-        this.email = email;
-        this.cnpj = cnpj;
-        this.razaoSocial = razaoSocial;
+    public Fornecedor() { }
+
+    public Fornecedor(Integer id, String razaoSocial, String cnpj, String email, String telefone, boolean ativo) {
         this.id = id;
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+        this.email = email;
+        this.telefone = telefone;
+        this.ativo = ativo;
     }
 
     public Integer getId() {

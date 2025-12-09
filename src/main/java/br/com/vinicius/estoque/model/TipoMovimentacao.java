@@ -4,7 +4,7 @@ public enum TipoMovimentacao {
 
     ENTRADA("Entrada"),
     SAIDA("Saída"),
-    REPOSICAO("Reposição");
+    AJUSTE("Ajuste");
 
     private final String descricao;
 
