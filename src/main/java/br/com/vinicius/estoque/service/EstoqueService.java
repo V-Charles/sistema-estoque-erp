@@ -3,6 +3,7 @@ package br.com.vinicius.estoque.service;
 import br.com.vinicius.estoque.model.Movimentacao;
 import br.com.vinicius.estoque.model.Produto;
 import br.com.vinicius.estoque.model.TipoMovimentacao;
+import br.com.vinicius.estoque.model.Usuario;
 
 public class EstoqueService {
 
@@ -47,5 +48,22 @@ public class EstoqueService {
         } else if (movimentacao.getTipoMovimentacao() == TipoMovimentacao.AJUSTE) {
             produto.setQuantidadeTotalEstoque(saldoAtual + quantidadeMovimentada);
         }
+    }
+
+    public void criarMovimentacao(Produto produto, Integer quantidade, TipoMovimentacao tipo, String observacao, Usuario usuario) {
+        if (quantidade == null || quantidade <= 0) {
+            throw new IllegalArgumentException("A quantidade deve ser um número positivo maior que zero.");
+        }
+
+        Movimentacao mov = new Movimentacao();
+        mov.setProduto(produto);
+        mov.setQuantidade(quantidade);
+        mov.setTipoMovimentacao(tipo);
+        mov.setObservacao(observacao);
+        mov.setUsuario(usuario);
+
+        mov.setDataHora(java.time.LocalDateTime.now());
+
+        realizarMovimentacao(mov);
     }
 }
