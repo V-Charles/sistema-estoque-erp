@@ -3,6 +3,7 @@ package br.com.vinicius.estoque.app;
 import br.com.vinicius.estoque.model.*;
 import br.com.vinicius.estoque.service.EstoqueService;
 import br.com.vinicius.estoque.service.ProdutoService;
+import br.com.vinicius.estoque.service.UsuarioService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -85,6 +86,18 @@ public class Main {
             estoqueService.realizarMovimentacao(vendaInvalida);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro esperado: " + e.getMessage());
+        }
+
+        System.out.println("\n--- Teste 4: Login ---");
+        br.com.vinicius.estoque.service.UsuarioService usuarioService = new UsuarioService();
+        try {
+            Usuario uLogado = usuarioService.autenticar("vinicius.admin", "123");
+            System.out.println("Login realizado: " + uLogado);
+
+            // teste com senha errada
+            //usuarioService.autenticar("vinicius.admin", "senhaerrada");
+        } catch (Exception e){
+            System.out.println("Erro de login: " + e.getMessage());
         }
 
         System.out.println("\n--- Fim dos testes ---");
