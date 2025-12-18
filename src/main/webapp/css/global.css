@@ -19,6 +19,14 @@
 body {
     background-color: var(--cinza-claro);
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    padding: 20px 40px;
 }
 
 /* Cabeçalho */
@@ -142,4 +150,16 @@ nav a.btn-sair svg {
 input:checked + .slider:before {
     transform: translateX(28px);
     background-color: var(--azul-escuro);
+}
+
+/* Rodapé */
+footer {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-top: 4px solid var(--azul-escuro);
+}
+
+footer p:last-child {
+    margin-bottom: 0;
 }
