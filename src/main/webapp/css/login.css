@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+.body-login {
+    background-image: url(../images/fundo_login.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.body-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #44407D;
+    opacity: 40%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.login-container, footer {
+    position: relative;
+    z-index: 1;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-card {
+    background-color: var(--azul-escuro);
+    color: white;
+    padding: 40px 50px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.login-card h1 {
+    margin-bottom: 35px;
+    font-size: 32px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background-color: white;
+}
+
+.btn-login {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.btn-login:hover {
+    opacity: 0.8;
+    background-color: var(--azul-claro);
+    color: black;
+}
+
+.login-card .btn-login {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.link-esqueci {
+    color: white;
+}
