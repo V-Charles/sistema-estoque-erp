@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IS - Produtos</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div id="area-logo">
+        <a href="dashboard.html">
+            <img src="images/InventorySystem.png 1.svg" alt="IS Logo" class="logo-img">
+        </a>
+    </div>
+    <nav>
+        <div class="nav-links">
+            <a href="dashboard.html">Home</a>
+            <a href="produtos.html" class="active">Produtos</a>
+            <a href="fornecedores.html">Fornecedores</a>
+            <a href="movimentacoes.html">Movimentações</a>
+        </div>
+        <div class="user-controls">
+
+            <div class="vertical-divider"></div>
+
+            <a href="index.html" class="btn-sair">
+                SAIR
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            </a>
+            <label class="theme-switch">
+                <input type="checkbox" id="checkbox-theme">
+                <span class="slider">
+                        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </span>
+            </label>
+        </div>
+    </nav>
+</header>
+<main>
+    <section class="top-fixed-content">
+        <div class="page-header">
+            <h1>Produtos</h1>
+        </div>
+        <div class="filter-bar">
+            <form class="search-group">
+                <div class="input-wrapper small">
+                    <label>ID</label>
+                    <input type="number" class="filter-input">
+                </div>
+                <div class="input-wrapper">
+                    <label>Nome</label>
+                    <input type="text" class="filter-input">
+                </div>
+                <div class="input-wrapper">
+                    <label>Categoria</label>
+                    <select class="filter-input">
+                        <option>Selecione</option>
+                        <option>Periféricos</option>
+                        <option>Hardware</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn-limpar">Limpar</button>
+                    <a href="#" class="btn-padrao">+ Novo produto</a>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="table-content-scroll">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Fornecedor</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Teclado Mecânico</td>
+                <td>Periféricos</td>
+                <td>World Tech</td>
+                <td>32</td>
+                <td>R$ 8.000,00</td>
+                <td><span class="status-badge status-ativo">Ativo</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Mouse Gamer</td>
+                <td>Periféricos</td>
+                <td>World Tech</td>
+                <td>18</td>
+                <td>R$ 1.980,00</td>
+                <td><span class="status-badge status-pausado">Pausado</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Monitor 29'</td>
+                <td>TV's e Monitores</td>
+                <td>World Tech</td>
+                <td>16</td>
+                <td>R$ 24.000,00</td>
+                <td><span class="status-badge status-descontinuado">Descontinuado</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Gabinete ATX</td>
+                <td>Hardware</td>
+                <td>Kabum</td>
+                <td>10</td>
+                <td>R$ 1.500,00</td>
+                <td><span class="status-badge status-ativo">Ativo</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Cabo HDMI</td>
+                <td>Periféricos</td>
+                <td>China Imp.</td>
+                <td>100</td>
+                <td>R$ 500,00</td>
+                <td><span class="status-badge status-ativo">Ativo</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>SSD 1TB</td>
+                <td>Hardware</td>
+                <td>Kingston</td>
+                <td>25</td>
+                <td>R$ 12.000,00</td>
+                <td><span class="status-badge status-ativo">Ativo</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Webcam</td>
+                <td>Periféricos</td>
+                <td>Logitech</td>
+                <td>12</td>
+                <td>R$ 2.400,00</td>
+                <td><span class="status-badge status-pausado">Pausado</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Headset</td>
+                <td>Áudio</td>
+                <td>HyperX</td>
+                <td>30</td>
+                <td>R$ 9.000,00</td>
+                <td><span class="status-badge status-ativo">Ativo</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Headset</td>
+                <td>Áudio</td>
+                <td>HyperX</td>
+                <td>30</td>
+                <td>R$ 9.000,00</td>
+                <td><span class="status-badge status-ativo">Ativo</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Headset</td>
+                <td>Áudio</td>
+                <td>HyperX</td>
+                <td>30</td>
+                <td>R$ 9.000,00</td>
+                <td><span class="status-badge status-ativo">Ativo</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Headset</td>
+                <td>Áudio</td>
+                <td>HyperX</td>
+                <td>30</td>
+                <td>R$ 9.000,00</td>
+                <td><span class="status-badge status-ativo">Ativo</span></td>
+                <td class="actions">
+                    <a href="#" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </a>
+                    <a href="movimentacoes.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2025 - Sistema de Gerenciamento de Estoques. Todos os direitos reservados.</p>
+    <p>Contato: viniciuscharles3101@gmail.com</p>
+</footer>
+</body>
+</html>

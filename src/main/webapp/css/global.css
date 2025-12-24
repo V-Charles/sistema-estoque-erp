@@ -5,6 +5,7 @@
     --azul-claro: #36D0F8;
     --cinza-claro: #F5F5F5;
     --vermelho: #D32F2F;
+    --vermelho-sair: #D32F2F;
 }
 
 * {
@@ -16,40 +17,46 @@
     background: none;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     background-color: var(--cinza-claro);
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    overflow: hidden;
 }
 
-main {
-    flex: 1;
-    padding: 20px 40px;
-}
-
-/* Cabeçalho */
+/* --- Cabeçalho --- */
 header {
     background-color: white;
-    padding: 15px 40px;
+    padding: 0 40px;
     width: 100%;
     display: flex;
     align-items: center;
     border-bottom: 4px solid var(--azul-escuro);
     box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    z-index: 1000;
+    height: 88px;
 }
 
-.logo-img {
-    height: 50px;
-    display: block;
-}
+.logo-img { height: 50px; display: block; }
 
+/* --- Menu --- */
 nav {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    margin-left: 500px;
+}
+
+.nav-links {
+    display: flex;
     gap: 20px;
-    margin-left: auto;
 }
 
 nav a {
@@ -58,11 +65,16 @@ nav a {
     font-size: 18px;
     transition: color 0.3s;
 }
+nav a:hover, nav a.active { color: var(--azul-claro); }
 
-nav a:hover {
-    color: var(--azul-claro);
+/* --- Controles (Direita) --- */
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
+/* --- Botão Sair --- */
 nav a.btn-sair {
     color: var(--vermelho);
     display: flex;
@@ -79,14 +91,14 @@ nav a.btn-sair svg {
     stroke: var(--vermelho);
 }
 
-.user-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 15px;
-    margin-top: -45px;
+/* --- Divisória Vertical --- */
+.vertical-divider {
+    width: 1px;
+    height: 24px;
+    background-color: #ddd;
 }
 
+/* --- Switch de tema --- */
 .theme-switch {
     position: relative;
     display: inline-block;
@@ -152,7 +164,39 @@ input:checked + .slider:before {
     background-color: var(--azul-escuro);
 }
 
-/* Botões */
+
+/* --- Estrutura do corpo --- */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    padding: 0 40px;
+    position: relative;
+}
+
+/* --- Seção Fixa --- */
+.top-fixed-content {
+    flex-shrink: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--cinza-claro);
+    z-index: 900;
+}
+
+/* --- Seção Rolável --- */
+.table-content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* --- Botões --- */
 .btn-padrao {
     background-color: black;
     color: white;
@@ -163,21 +207,236 @@ input:checked + .slider:before {
     cursor: pointer;
     transition: opacity 0.3s, background-color 0.3s;
     border: none;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .btn-padrao:hover {
     opacity: 0.8s;
-    background-color: var(--azul-escuro);
+    border: 1px solid #ffffff;
 }
 
-/* Rodapé */
+/* --- Page Header --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    color: #333;
+}
+
+/* --- Barra de filtros --- */
+.filter-bar {
+    background-color: var(--azul-escuro);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-wrapper label {
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+.filter-input {
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    min-width: 150px;
+    background-color: white;
+    color: #333;
+    height: 30px;
+    line-height: 38px;
+}
+
+select.filter-input {
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.input-wrapper.small .filter-input {
+    min-width: 80px;
+    width: 80px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    padding-bottom: 0;
+    align-items: flex-end;
+}
+
+.btn-limpar {
+    background-color: transparent;
+    color: #ddd;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0 20px;
+    height: 38px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-limpar:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: white;
+}
+
+/* --- Tabela --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #E0E0E0;
+    text-align: left;
+    padding: 15px;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    font-size: 14px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
+}
+
+tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* --- Status --- */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.status-ativo {
+    background-color: #8ffd98;
+    border: 1px solid #C8E6C9;
+}
+
+.status-pausado {
+    background-color: #fab546;
+    border: 1px solid #FFE0B2;
+}
+
+.status-descontinuado {
+    background-color: #ee5b5b;
+    border: 1px solid #FFCDD2;
+}
+
+
+/* --- Actions --- */
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.btn-action:hover {
+    background-color: #F0F0F0;
+}
+
+.btn-view svg {
+    stroke: #555;
+}
+
+.btn-view:hover svg {
+    stroke: var(--azul-escuro);
+}
+
+.btn-movi svg {
+    stroke: #555;
+}
+
+.btn-movi:hover svg {
+    stroke: var(--azul-claro);
+}
+
+/* --- Footer --- */
 footer {
     background-color: white;
     padding: 20px;
     text-align: center;
     border-top: 4px solid var(--azul-escuro);
+    flex-shrink: 0;
+    z-index: 10;
 }
 
 footer p:last-child {
     margin-bottom: 0;
+}
+
+/* --- Scrollbar --- */
+.table-content-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-content-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-content-scroll::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.table-content-scroll::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
