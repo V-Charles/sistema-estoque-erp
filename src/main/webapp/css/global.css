@@ -440,3 +440,23 @@ footer p:last-child {
 .table-content-scroll::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
+
+.checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-weight: normal;
+    color: white;
+}
+
+.checkbox-group input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
