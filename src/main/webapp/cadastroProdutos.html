@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IS - Cadastro de Produtos</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="body-scroll">
+    <header>
+    <div id="area-logo">
+        <a href="dashboard.html">
+            <img src="images/InventorySystem.png 1.svg" alt="IS Logo" class="logo-img">
+        </a>
+    </div>
+    <nav>
+        <div class="nav-links">
+            <a href="dashboard.html">Home</a>
+            <a href="produtos.html" class="active">Produtos</a>
+            <a href="fornecedores.html">Fornecedores</a>
+            <a href="movimentacoes.html">Movimentações</a>
+        </div>
+        <div class="user-controls">
+
+            <div class="vertical-divider"></div>
+
+            <a href="index.html" class="btn-sair">
+                SAIR
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            </a>
+            <label class="theme-switch">
+                <input type="checkbox" id="checkbox-theme">
+                <span class="slider">
+                        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </span>
+            </label>
+        </div>
+    </nav>
+    </header>
+    <main>
+        <div class="page-content">
+            <div class="page-header">
+                <h1>Novo Produto</h1>
+            </div>
+            <section class="form-card">
+                <form action="" method="">
+                    <div class="form-grid">
+                        <div class="form-column">
+                            <div class="input-wrapper">
+                                <label for="nome-produto">Nome do Produto</label>
+                                <input type="text" id="nome-produto" name="nome-produto" class="form-input" required>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="valor-unitario">Valor Unitário (Venda)</label>
+                                <div class="input-with-prefix">
+                                    <span>R$</span>
+                                    <input type="number" id="valor-unitario" class="form-input" placeholder="0,00" min="0.01" step="0.01">
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="valor-custo">Valor de Custo (Unitário)</label>
+                                <div class="input-with-prefix">
+                                    <span>R$</span>
+                                    <input type="number" id="valor-custo" class="form-input" placeholder="0,00" min="0.01" step="0.01">
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="categoria">Categoria</label>
+                                <select id="categoria" name="categoria" class="form-input">
+                                    <option value="">Selecione</option>
+                                    <option value="Periféricos">Periféricos</option>
+                                    <option value="Hardware">Hardware</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-column">
+                            <div class="input-wrapper full-width">
+                                <label for="descricao">Descrição</label>
+                                <textarea id="descricao" name="descricao" class="form-input" rows="5"></textarea>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="data-cadastro">Data de cadastro</label>
+                                <input type="date" id="data-cadastro" name="data-cadastro" class="form-input">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="fornecedor">Fornecedor</label>
+                                <select id="fornecedor" name="fornecedor" class="form-input">
+                                    <option value="">Selecione</option>
+                                    <option value="World Tech">World Tech</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <a href="produtos.html" class="btn-padrao">Cancelar cadastro</a>
+                        <button type="submit" class="btn-padrao">Salvar cadastro</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
