@@ -1,13 +1,6 @@
 @charset "UTF-8";
 
-:root {
-    --azul-escuro: #3B5D84;
-    --azul-claro: #36D0F8;
-    --cinza-claro: #F5F5F5;
-    --vermelho: #D32F2F;
-    --vermelho-sair: #D32F2F;
-}
-
+/* RESET */
 * {
     padding: 0;
     margin: 0;
@@ -17,6 +10,16 @@
     background: none;
 }
 
+/* TOKENS (variáveis) */
+:root {
+    --azul-escuro: #3B5D84;
+    --azul-claro: #36D0F8;
+    --cinza-claro: #F5F5F5;
+    --vermelho: #D32F2F;
+    --vermelho-sair: #D32F2F;
+}
+
+/* BASE — comportamento padrão do sistema */
 html, body {
     height: 100%;
     width: 100%;
@@ -30,19 +33,7 @@ body {
     overflow: hidden;
 }
 
-body.body-scroll {
-    height: auto;
-    overflow-y: auto;
-    display: block;
-    padding-top: 120px;
-}
-
-body.body-scroll main {
-    overflow: visible;
-    padding: 0 20px 40px 20px;
-}
-
-/* --- Cabeçalho --- */
+/* LAYOUT — estrutura da página */
 header {
     background-color: white;
     padding: 0 40px;
@@ -50,7 +41,7 @@ header {
     display: flex;
     align-items: center;
     border-bottom: 4px solid var(--azul-escuro);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
     position: fixed;
     top: 0;
     left: 0;
@@ -64,7 +55,6 @@ header {
     display: block;
 }
 
-/* --- Menu --- */
 nav {
     display: flex;
     align-items: center;
@@ -89,14 +79,62 @@ nav a:hover, nav a.active {
     color: var(--azul-claro);
 }
 
-/* --- Controles (Direita) --- */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
+    padding: 110px 40px 40px 40px;
+    position: relative;
+}
+
+.top-fixed-content {
+    flex-shrink: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--cinza-claro);
+    z-index: 900;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    color: #333;
+}
+
+.page-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-top: 4px solid var(--azul-escuro);
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+footer p:last-child {
+    margin-bottom: 0;
+}
+
+/* COMPONENTES — elementos reutilizáveis */
 .user-controls {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-/* --- Botão Sair --- */
 nav a.btn-sair {
     color: var(--vermelho);
     display: flex;
@@ -113,14 +151,6 @@ nav a.btn-sair svg {
     stroke: var(--vermelho);
 }
 
-/* --- Divisória Vertical --- */
-.vertical-divider {
-    width: 1px;
-    height: 24px;
-    background-color: #ddd;
-}
-
-/* --- Switch de tema --- */
 .theme-switch {
     position: relative;
     display: inline-block;
@@ -186,38 +216,6 @@ input:checked + .slider:before {
     background-color: var(--azul-escuro);
 }
 
-/* --- Estrutura do corpo --- */
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    width: 100%;
-    padding: 80px 40px 10px 40px;
-    position: relative;
-}
-
-/* --- Seção Fixa --- */
-.top-fixed-content {
-    flex-shrink: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: var(--cinza-claro);
-    z-index: 900;
-}
-
-/* --- Seção Rolável --- */
-.table-content-scroll {
-    flex: 1;
-    overflow-y: auto;
-    background-color: white;
-    border-radius: 5px 5px 0 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-}
-
-/* --- Botões --- */
 .btn-padrao {
     background-color: black;
     color: white;
@@ -235,24 +233,92 @@ main {
 }
 
 .btn-padrao:hover {
-    opacity: 0.8s;
+    opacity: 0.8;
     border: 1px solid #ffffff;
 }
 
-/* --- Page Header --- */
-.page-header {
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.status-ativo {
+    background-color: #8ffd98;
+    border: 1px solid #C8E6C9;
+}
+
+.status-pausado {
+    background-color: #fab546;
+    border: 1px solid #FFE0B2;
+}
+
+.status-descontinuado {
+    background-color: #ee5b5b;
+    border: 1px solid #FFCDD2;
+}
+
+.actions {
     display: flex;
-    justify-content: space-between;
+    gap: 15px;
+}
+
+.btn-action {
+    display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer;
 }
 
-.page-header h1 {
-    font-size: 28px;
-    color: #333;
+.btn-action:hover {
+    background-color: #F0F0F0;
 }
 
-/* --- Barra de filtros --- */
+.btn-view svg {
+    stroke: #555;
+}
+
+.btn-view:hover svg {
+    stroke: var(--azul-escuro);
+}
+
+.btn-movi svg {
+    stroke: #555;
+}
+
+.btn-movi:hover svg {
+    stroke: var(--azul-claro);
+}
+
+.checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-weight: normal;
+    color: white;
+}
+
+.checkbox-group input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* COMPONENTES COMPLEXOS — blocos com estrutura interna */
 .filter-bar {
     background-color: var(--azul-escuro);
     padding: 15px 20px;
@@ -334,116 +400,16 @@ select.filter-input {
     border-color: white;
 }
 
-/* --- Tabela --- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-thead th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: #E0E0E0;
-    text-align: left;
-    padding: 15px;
-    color: #333;
-    font-weight: bold;
-    border-bottom: 2px solid #ccc;
-    font-size: 14px;
-    text-transform: uppercase;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
-}
-
-tbody td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    color: #555;
-    vertical-align: middle;
-}
-
-tbody tr:hover {
-    background-color: #f9f9f9;
-}
-
-/* --- Status --- */
-.status-badge {
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    display: inline-block;
-    min-width: 80px;
-    text-align: center;
-}
-
-.status-ativo {
-    background-color: #8ffd98;
-    border: 1px solid #C8E6C9;
-}
-
-.status-pausado {
-    background-color: #fab546;
-    border: 1px solid #FFE0B2;
-}
-
-.status-descontinuado {
-    background-color: #ee5b5b;
-    border: 1px solid #FFCDD2;
-}
-
-/* --- Actions --- */
-.actions {
-    display: flex;
-    gap: 15px;
-}
-
-.btn-action {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    cursor: pointer;
-}
-
-.btn-action:hover {
-    background-color: #F0F0F0;
-}
-
-.btn-view svg {
-    stroke: #555;
-}
-
-.btn-view:hover svg {
-    stroke: var(--azul-escuro);
-}
-
-.btn-movi svg {
-    stroke: #555;
-}
-
-.btn-movi:hover svg {
-    stroke: var(--azul-claro);
-}
-
-/* --- Footer --- */
-footer {
+.table-content-scroll {
+    flex: 1;
+    overflow-y: auto;
     background-color: white;
-    padding: 20px;
-    text-align: center;
-    border-top: 4px solid var(--azul-escuro);
-    flex-shrink: 0;
-    z-index: 10;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
 }
 
-footer p:last-child {
-    margin-bottom: 0;
-}
-
-/* --- Scrollbar --- */
 .table-content-scroll::-webkit-scrollbar {
     width: 8px;
 }
@@ -461,36 +427,45 @@ footer p:last-child {
     background: #a8a8a8;
 }
 
-/* --- Checkbox Filtros --- */
-.checkbox-group {
-    flex-direction: column;
-    gap: 10px;
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.checkbox-group label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    font-weight: normal;
-    color: white;
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #E0E0E0;
+    text-align: left;
+    padding: 15px;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    font-size: 14px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
 }
 
-.checkbox-group input {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
+tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+    vertical-align: middle;
 }
 
-/* --- Formulário de cadastro --- */
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
 .form-card {
     background-color: var(--azul-escuro);
     border-radius: 10px;
-    padding: 40px 40px;
+    padding: 40px 50px;
     width: 100%;
     max-width: 900px;
-    margin: 10px auto 40px auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 40px auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     color: white;
 }
 
@@ -583,8 +558,142 @@ select.form-input option {
     justify-content: center;
 }
 
-.page-content {
+/* UTILITÁRIOS — classes de apoio rápido */
+.vertical-divider {
+    width: 1px;
+    height: 24px;
+    background-color: #ddd;
+}
+
+body.body-scroll {
+    height: auto;
+    overflow-y: auto;
+    display: block;
+    padding-top: 120px;
+}
+
+body.body-scroll main {
+    overflow: visible;
+    padding: 0 20px 40px 20px;
+    margin-top: 0;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+/* PÁGINAS ESPECÍFICAS — sobrescritas controladas */
+.product-view-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-top: 20px;
+}
+
+.history-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.history-card h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.history-table-wrapper {
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+}
+
+.history-table-wrapper thead th {
+    position: static;
+    box-shadow: none;
+}
+
+.product-view-layout .form-card {
+    max-width: 100%;
+    margin: 0;
+    padding: 30px 30px;
+}
+
+.product-view-layout .form-grid {
+    display: block;
+}
+
+.product-view-layout .input-group {
+    width: 100%;
+}
+
+.product-form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field-edit-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.field-edit-row .form-input {
+    flex: 1;
+}
+
+.editable-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.editable-field .form-input,
+.editable-field .input-with-prefix {
+    flex: 1; 
+    width: 100%;
+}
+
+.edit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.edit-icon svg {
+    stroke: #28a745;
+}
+
+.edit-icon:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 0;
+    accent-color: var(--azul-escuro); 
 }
