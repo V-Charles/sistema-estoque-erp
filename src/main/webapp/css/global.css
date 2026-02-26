@@ -233,7 +233,7 @@ input:checked + .slider:before {
 }
 
 .btn-padrao:hover {
-    opacity: 0.8;
+    opacity: 0.8s;
     border: 1px solid #ffffff;
 }
 
@@ -696,4 +696,116 @@ body.body-scroll main {
     cursor: pointer;
     margin: 0;
     accent-color: var(--azul-escuro); 
+}
+
+.dashboard-greeting {
+    margin-bottom: 30px;
+}
+
+.dashboard-greeting h1 {
+    font-size: 32px;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.dashboard-greeting p {
+    font-size: 16px;
+    color: #333;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.summary-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.summary-card .value {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+}
+
+.summary-card .label {
+    font-size: 15px;
+    color: var(--azul-escuro);
+}
+
+.dashboard-section {
+    margin-bottom: 40px;
+}
+
+.dashboard-section h2 {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.dashboard-table-wrapper {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: none;
+}
+
+.dashboard-table thead th {
+    background-color: var(--azul-escuro);
+    color: white;
+    border-bottom: none;
+}
+
+.dashboard-table .btn-view svg {
+    stroke: var(--azul-claro);
+}
+
+.alerts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.alert-card {
+    background-color: #FDF2DD;
+    border-left: 5px solid #F59E0B;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.alert-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 14px;
+    color: #000;
+}
+
+.alert-header svg {
+    width: 20px;
+    height: 20px;
+    stroke: #000;
+}
+
+.alert-content {
+    padding: 15px 20px;
+}
+
+.alert-content p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #000;
+}
+
+.alert-content p:last-child {
+    margin-bottom: 0;
 }

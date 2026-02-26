@@ -6,7 +6,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/global.css">
 </head>
-<body>
+<body class="body-scroll">
 <header>
     <div id="area-logo">
         <a href="dashboard.html">
@@ -39,7 +39,109 @@
     </nav>
 </header>
 <main>
+    <div class="dashboard-greeting">
+        <h1>Olá, usuário!</h1>
+        <p>Bem - vindo ao sistema de controle de estoque.</p>
+    </div>
 
+    <div class="summary-cards">
+        <div class="summary-card">
+            <span class="value">--</span>
+            <span class="label">Produtos cadastrados</span>
+        </div>
+        <div class="summary-card">
+            <span class="value">--</span>
+            <span class="label">Fornecedores cadastrados</span>
+        </div>
+        <div class="summary-card">
+            <span class="value">--</span>
+            <span class="label">Valor total em estoque</span>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Últimas Movimentações:</h2>
+        <div class="table-content-scroll dashboard-table-wrapper">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo de movimentação</th>
+                        <th>Produto</th>
+                        <th>Fornecedor</th>
+                        <th>Quantidade</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Entrada</td>
+                        <td>Produto A</td>
+                        <td>Fornecedor A</td>
+                        <td>324</td>
+                        <td class="actions">
+                            <a href="visualizacaoMovimentacao.html" class="btn-action btn-view">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Saída</td>
+                        <td>Produto B</td>
+                        <td>Fornecedor B</td>
+                        <td>1.456</td>
+                        <td class="actions">
+                            <a href="visualizacaoMovimentacao.html" class="btn-action btn-view">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Ajuste</td>
+                        <td>Produto C</td>
+                        <td>Fornecedor C</td>
+                        <td>52</td>
+                        <td class="actions">
+                            <a href="visualizacaoMovimentacao.html" class="btn-action btn-view">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Alertas</h2>
+        <div class="alerts-grid">
+            <div class="alert-card">
+                <div class="alert-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    Os produtos abaixo estão com quantidades baixas:
+                </div>
+                <div class="alert-content">
+                    <p><strong>Produto 1</strong></p>
+                    <p><strong>Produto 2</strong></p>
+                    <p><strong>Produto 3</strong></p>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="alert-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    Os fornecedores abaixo estão temporariamente inativos
+                </div>
+                <div class="alert-content">
+                    <p><strong>Fornecedor A</strong></p>
+                    <p><strong>Fornecedor B</strong></p>
+                    <p><strong>Fornecedor C</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <footer>
     <p>&copy; 2025 - Sistema de Gerenciamento de Estoques. Todos os direitos reservados.</p>
