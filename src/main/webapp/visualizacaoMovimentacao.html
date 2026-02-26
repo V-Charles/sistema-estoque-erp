@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IS - Visualizar Movimentação</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="area-logo">
+            <a href="dashboard.html">
+                <img src="images/InventorySystem.png 1.svg" alt="IS Logo" class="logo-img">
+            </a>
+        </div>
+        <nav>
+            <div class="nav-links">
+                <a href="dashboard.html">Home</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="fornecedores.html">Fornecedores</a>
+                <a href="movimentacoes.html" class="active">Movimentações</a>
+            </div>
+            <div class="user-controls">
+
+                <div class="vertical-divider"></div>
+
+                <a href="index.html" class="btn-sair">
+                    SAIR
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                </a>
+                <label class="theme-switch">
+                    <input type="checkbox" id="checkbox-theme">
+                    <span class="slider">
+                            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </span>
+                </label>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="page-content">
+            <div class="page-header">
+                <h1>Visualização de Movimentação</h1>
+            </div>
+            <section class="form-card">
+                <form action="" method="">
+                    <div class="form-grid">
+                        <div class="form-column">
+                            <div class="input-wrapper">
+                                <label for="nome-produto">Nome do Produto</label>
+                                <input type="text" id="nome-produto" name="nome-produto" class="form-input" required>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="nome-fornecedor">Nome do Fornecedor</label>
+                                <input type="text" id="nome-fornecedor" name="nome-fornecedor" class="form-input" required>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="tipo-movimentacao">Tipo de movimentação</label>
+                                <div class="input-with-prefix">
+                                    <input type="text" id="tipo-movimentacao" class="form-input" placeholder="Entrada, Saída ou Ajuste">
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="valor-unitario">Valor Unitário (Venda)</label>
+                                <div class="input-with-prefix">
+                                    <span>R$</span>
+                                    <input type="number" id="valor-unitario" class="form-input" placeholder="0,00" min="0.01" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="data-movimentacao">Data da movimentação</label>
+                                <input type="date" id="data-movimentacao" name="data-movimentacao" class="form-input">
+                            </div>
+                        </div>
+                        <div class="form-column">
+                            <div class="input-wrapper full-width">
+                                <label for="observacao">Observação</label>
+                                <textarea id="observacao" name="observacao" class="form-input" rows="5" required></textarea>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="nome-usuario">Usuário responsável</label>
+                                <input type="text" id="nome-usuario" name="nome-usuario" class="form-input" required>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="quantidade-movimentada">Quantidade movimentada</label>
+                                <input type="number" id="quantidade-movimentada" name="quantidade-movimentada" class="form-input" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <a href="movimentacoes.html" class="btn-padrao">Voltar</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
