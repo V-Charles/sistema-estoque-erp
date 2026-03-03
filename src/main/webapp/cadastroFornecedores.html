@@ -58,14 +58,14 @@
                             </div>
                             <div class="input-wrapper">
                                 <label for="telefone-fornecedor">Telefone</label>
-                                <input type="text" id="telefone-fornecedor" name="telefone-fornecedor" class="form-input" placeholder="(00) 00000-0000" required>
+                                <input type="text" id="telefone" class="form-input mask-telefone" placeholder="(00) 00000-0000" maxlength="15" required>
                             </div>
                         </div>
 
                         <div class="form-column">
                             <div class="input-wrapper">
                                 <label for="cnpj">CNPJ</label>
-                                <input type="text" id="cnpj" name="cnpj" class="form-input" placeholder="00.000.000/0000-00" required>
+                                <input type="text" id="cnpj" class="form-input mask-cnpj" placeholder="00.000.000/0000-00" maxlength="18" required>
                             </div>
                             <div class="input-wrapper">
                                 <label for="data-cadastro">Data de cadastro</label>
@@ -82,5 +82,6 @@
         </div>
     </main>
     <script src="js/theme.js"></script>
+    <script src="js/masks.js"></script>
 </body>
 </html>

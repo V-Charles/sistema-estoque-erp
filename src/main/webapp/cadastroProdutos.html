@@ -56,19 +56,19 @@
                                 <label for="valor-unitario">Valor Unitário (Venda)</label>
                                 <div class="input-with-prefix">
                                     <span>R$</span>
-                                    <input type="number" id="valor-unitario" class="form-input" placeholder="0,00" min="0.01" step="0.01">
+                                    <input type="text" id="valor-unitario" class="form-input mask-dinheiro" placeholder="0,00" required>
                                 </div>
                             </div>
                             <div class="input-wrapper">
                                 <label for="valor-custo">Valor de Custo (Unitário)</label>
                                 <div class="input-with-prefix">
                                     <span>R$</span>
-                                    <input type="number" id="valor-custo" class="form-input" placeholder="0,00" min="0.01" step="0.01">
+                                    <input type="text" id="valor-custo" class="form-input mask-dinheiro" placeholder="0,00" min="0.01" step="0.01" required>
                                 </div>
                             </div>
                             <div class="input-wrapper">
                                 <label for="categoria">Categoria</label>
-                                <select id="categoria" name="categoria" class="form-input">
+                                <select id="categoria" name="categoria" class="form-input" required>
                                     <option value="">Selecione</option>
                                     <option value="Periféricos">Periféricos</option>
                                     <option value="Hardware">Hardware</option>
@@ -78,7 +78,7 @@
                         <div class="form-column">
                             <div class="input-wrapper full-width">
                                 <label for="descricao">Descrição</label>
-                                <textarea id="descricao" name="descricao" class="form-input" rows="5"></textarea>
+                                <textarea id="descricao" name="descricao" class="form-input" rows="5" required></textarea>
                             </div>
                             <div class="input-wrapper">
                                 <label for="data-cadastro">Data de cadastro</label>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="input-wrapper">
                                 <label for="fornecedor">Fornecedor</label>
-                                <select id="fornecedor" name="fornecedor" class="form-input">
+                                <select id="fornecedor" name="fornecedor" class="form-input" required>
                                     <option value="">Selecione</option>
                                     <option value="World Tech">World Tech</option>
                                 </select>
@@ -102,5 +102,6 @@
         </div>
     </main>
     <script src="js/theme.js"></script>
+    <script src="js/masks.js"></script>
 </body>
 </html>
