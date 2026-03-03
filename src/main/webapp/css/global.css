@@ -913,3 +913,22 @@ body.dark-theme .slider {
 body.dark-theme .slider:before {
     background-color: var(--azul-claro); 
 }
+
+/* Estados de validação (erro) */
+
+.form-input.input-error {
+    border-color: var(--vermelho) !important;
+    background-color: rgba(211, 47, 47, 0.05);
+}
+
+.error-message {
+    color: var(--vermelho);
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    font-weight: bold;
+}
+
+body.dark-theme .form-input.input-error {
+    background-color: rgba(211, 47, 47, 0.15);
+}
