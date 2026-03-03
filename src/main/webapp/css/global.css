@@ -53,6 +53,8 @@ header {
 .logo-img {
     height: 50px;
     display: block;
+    transform: scale(1.6);
+    transform-origin: left center;
 }
 
 nav {
@@ -808,4 +810,106 @@ body.body-scroll main {
 
 .alert-content p:last-child {
     margin-bottom: 0;
+}
+
+/* Tema escuro */
+body.dark-theme {
+    --cinza-claro: #121212; 
+    
+    background-color: var(--cinza-claro);
+    color: #e2e8f0;
+}
+
+body.dark-theme header,
+body.dark-theme footer,
+body.dark-theme .table-content-scroll,
+body.dark-theme .history-card {
+    background-color: #1e1e1e; 
+    border-color: #333;
+    color: #e2e8f0;
+}
+
+body.dark-theme nav a:not(.btn-sair) {
+    color: var(--azul-escuro); 
+}
+body.dark-theme nav a:not(.btn-sair):hover, 
+body.dark-theme nav a:not(.btn-sair).active {
+    color: var(--azul-claro); 
+}
+
+body.dark-theme nav a.btn-sair {
+    color: var(--vermelho);
+}
+body.dark-theme nav a.btn-sair:hover {
+    color: red;
+}
+
+body.dark-theme .summary-card,
+body.dark-theme .filter-bar {
+    background-color: var(--azul-escuro); 
+    border: none;
+}
+
+body.dark-theme .summary-card .value,
+body.dark-theme .summary-card .label {
+    color: #ffffff;
+}
+
+body.dark-theme .alert-card {
+    background-color: #3b280a; 
+    border-left-color: #F59E0B;
+}
+body.dark-theme .alert-header,
+body.dark-theme .alert-content p,
+body.dark-theme .alert-header svg {
+    color: #fde68a;
+    stroke: #fde68a;
+}
+
+body.dark-theme .page-header h1,
+body.dark-theme .page-header-simple h1,
+body.dark-theme .dashboard-greeting h1,
+body.dark-theme .dashboard-greeting p,
+body.dark-theme .dashboard-section h2,
+body.dark-theme .input-group label,
+body.dark-theme .radio-group label,
+body.dark-theme .history-card h1 {
+    color: #e2e8f0;
+}
+
+body.dark-theme thead th {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-bottom: 2px solid #1a202c;
+}
+body.dark-theme tbody td {
+    border-bottom: 1px solid #333;
+    color: #cbd5e1;
+}
+body.dark-theme tbody tr:hover {
+    background-color: #2d3748;
+}
+
+body.dark-theme .status-ativo {
+    background-color: #1e1e1e;
+    color: #8ffd98;
+    border-color: #8ffd98;
+}
+body.dark-theme .status-pausado {
+    background-color: #1e1e1e;
+    color: #fab546;
+    border-color: #fab546;
+}
+body.dark-theme .status-descontinuado {
+    background-color: #1e1e1e;
+    color: #ee5b5b;
+    border-color: #ee5b5b;
+}
+
+body.dark-theme .slider {
+    background-color: #1e1e1e;
+    border-color: #444;
+}
+body.dark-theme .slider:before {
+    background-color: var(--azul-claro); 
 }
