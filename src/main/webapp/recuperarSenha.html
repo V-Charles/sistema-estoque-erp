@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha - Inventory System</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/recuperar.css">
+</head>
+<body class="auth-body">
+    <div class="auth-theme-toggle">
+        <label class="theme-switch">
+            <input type="checkbox" id="checkbox-theme">
+            <span class="slider">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+        </label>
+    </div>
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="images/InventorySystem.Logo_white.png" alt="IS Logo" class="logo-img auth-logo">
+                <h2>Recuperação de Senha</h2>
+            </div>
+            <div id="etapa-1" class="auth-estp active">
+                <p class="auth-description">Informe o e-mail associado à sua conta para receber as instruções de recuperação.</p>
+                <div class="input-group">
+                    <label for="email-recuperacao">E-mail:</label>
+                    <input type="email" name="" id="email-recuperacao" class="valida-email" placeholder="exemplo@gmail.com" required>
+                </div>
+                <button id="btn-enviar-codigo" class="btn-padrao btn-auth">Enviar Código</button>
+                <a href="index.html" class="auth-link-voltar">Voltar para Login</a>
+            </div>
+            <div id="etapa-2" class="auth-step hidden">
+                <p class="auth-description">Enviamos um código de 6 dígitos para o e-mail: <br><strong id="email-display">usuario@gmail.com</strong></p>
+                <div class="otp-container">
+                    <input type="text" class="otp-box" maxlength="1" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" autocomplete="off">
+                </div>
+                <button id="btn-validar-codigo" class="btn-padrao btn-auth">Validar Código</button>
+                <a href="#" id="btn-voltar-etapa1" class="auth-link-validar">Alterar E-mail</a>
+            </div>
+            <div id="etapa-3" class="auth-step hidden">
+                <p class="auth-description">Código validado com sucesso! Crie uma nova senha para sua conta.</p>
+                <div class="input-group">
+                    <label for="nova-senha">Nova senha:</label>
+                    <input type="password" name="" id="nova-senha" class="valida-senha" placeholder="********" minlength="8" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirma-senha">Confirmar nova senha:</label>
+                    <input type="password" name="" id="confirma-senha" placeholder="********" minlength="8" required>
+                </div>
+                <button id="btn-redefinir-senha" class="btn-padrao btn-auth">Redefinir senha</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 - Sistema de Gerenciamento de Estoques. Todos os direitos reservados</p>
+        <p>Contato: viniciuscharles3101@gmail.com</p>
+    </footer>
+    <script src="js/theme.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/recuperar.js"></script>
+</body>
+</html>
