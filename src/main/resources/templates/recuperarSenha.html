@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha - Inventory System</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/recuperar.css">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/recuperar.css}">
 </head>
 <body class="auth-body">
     <div class="auth-theme-toggle">
@@ -20,7 +20,7 @@
     <main class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <img src="images/InventorySystem.Logo_white.png" alt="IS Logo" class="logo-img auth-logo">
+                <img th:src="@{images/InventorySystem.Logo_white.png}" alt="IS Logo" class="logo-img auth-logo">
                 <h2>Recuperação de Senha</h2>
             </div>
             <div id="etapa-1" class="auth-estp active">
@@ -30,7 +30,7 @@
                     <input type="email" name="" id="email-recuperacao" class="valida-email" placeholder="exemplo@gmail.com" required>
                 </div>
                 <button id="btn-enviar-codigo" class="btn-padrao btn-auth">Enviar Código</button>
-                <a href="index.html" class="auth-link-voltar">Voltar para Login</a>
+                <a th:href="@{/index}" class="auth-link-voltar">Voltar para Login</a>
             </div>
             <div id="etapa-2" class="auth-step hidden">
                 <p class="auth-description">Enviamos um código de 6 dígitos para o e-mail: <br><strong id="email-display">usuario@gmail.com</strong></p>
@@ -55,7 +55,7 @@
                     <label for="confirma-senha">Confirmar nova senha:</label>
                     <input type="password" name="" id="confirma-senha" placeholder="********" minlength="8" required>
                 </div>
-                <button id="btn-redefinir-senha" class="btn-padrao btn-auth">Redefinir senha</button>
+                <a th:href="@{/index}" id="btn-redefinir-senha" class="btn-padrao btn-auth">Redefinir senha</a>
             </div>
         </div>
     </main>
@@ -63,8 +63,8 @@
         <p>&copy; 2025 - Sistema de Gerenciamento de Estoques. Todos os direitos reservados</p>
         <p>Contato: viniciuscharles3101@gmail.com</p>
     </footer>
-    <script src="js/theme.js"></script>
-    <script src="js/validation.js"></script>
-    <script src="js/recuperar.js"></script>
+    <script th:src="@{/js/theme.js}"></script>
+    <script th:src="@{/js/validation.js}"></script>
+    <script th:src="@{/js/recuperar.js}"></script>
 </body>
 </html>

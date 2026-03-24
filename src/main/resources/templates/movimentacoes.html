@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IS - Fornecedores</title>
-    <link rel="stylesheet" href="css/global.css">
+    <title>IS - Movimentações</title>
+    <link rel="stylesheet" th:href="@{css/global.css}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div id="area-logo">
-            <a href="dashboard.html">
-                <img src="images/InventorySystem.Logo-light-mod1.png" alt="IS Logo" class="logo-img">
+            <a th:href="@{/dashboard}">
+                <img th:src="@{/images/InventorySystem.Logo_white.png}" alt="IS Logo" class="logo-img">
             </a>
         </div>
         <nav>
             <div class="nav-links">
-                <a href="dashboard.html">Home</a>
-                <a href="produtos.html">Produtos</a>
-                <a href="fornecedores.html" class="active">Fornecedores</a>
-                <a href="movimentacoes.html">Movimentações</a>
+                <a th:href="@{/dashboard}">Home</a>
+                <a th:href="@{/produtos}">Produtos</a>
+                <a th:href="@{/fornecedores}">Fornecedores</a>
+                <a th:href="@{/movimentacoes}" class="active">Movimentações</a>
             </div>
             <div class="user-controls">
 
                 <div class="vertical-divider"></div>
 
-                <a href="index.html" class="btn-sair">
+                <a th:href="@{/index}" class="btn-sair">
                     SAIR
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                 </a>
                 <label class="theme-switch">
                     <input type="checkbox" id="checkbox-theme">
                     <span class="slider">
-                            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        </span>
+                        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </span>
                 </label>
             </div>
         </nav>
@@ -42,10 +42,21 @@
     <main>
         <section class="top-fixed-content">
             <div class="page-header">
-                <h1>Fornecedores</h1>
+                <h1>Movimentações</h1>
             </div>
             <div class="filter-bar">
                 <form class="search-group">
+                    <div class="input-wrapper checkbox-group">
+                        <label>
+                            <input type="checkbox" id="entrada"> Entrada
+                        </label>
+                        <label>
+                            <input type="checkbox" id="saida"> Saída
+                        </label>
+                        <label>
+                            <input type="checkbox" id="ajuste"> Ajuste
+                        </label>
+                    </div>
                     <div class="input-wrapper small">
                         <label>ID</label>
                         <input type="number" class="filter-input">
@@ -55,12 +66,11 @@
                         <input type="text" class="filter-input">
                     </div>
                     <div class="input-wrapper">
-                        <label>Telefone</label>
-                        <input type="number" class="filter-input">
+                        <label>Fornecedor</label>
+                        <input type="text" class="filter-input">
                     </div>
                     <div class="button-group">
                         <button type="button" class="btn-limpar">Limpar</button>
-                        <a href="cadastroFornecedores.html" class="btn-padrao">+ Novo fornecedor</a>
                     </div>
                 </form>
             </div>
@@ -70,154 +80,142 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome fornecedor</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>CNPJ</th>
-                    <th>Status</th>
+                    <th>Tipo de movimentação</th>
+                    <th>Produto</th>
+                    <th>Fornecedor</th>
+                    <th>Quantidade</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
+                    <td>Entrada</td>
+                    <td>Produto A</td>
                     <td>Fornecedor A</td>
-                    <td>fornecedorA@email.com</td>
-                    <td>(11) 9999-8888</td>
-                    <td>12.345.678/0001-90</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
+                    <td>100</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>2</td>
+                    <td>Saída</td>
+                    <td>Produto B</td>
                     <td>Fornecedor B</td>
-                    <td>fornecedorB@email.com</td>
-                    <td>(11) 9876-5432</td>
-                    <td>98.765.432/0001-00</td>
-                    <td><span class="status-badge status-pausado">Contrato Pausado</span></td>
+                    <td>50</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>3</td>
+                    <td>Entrada</td>
+                    <td>Produto C</td>
                     <td>Fornecedor C</td>
-                    <td>fornecedorC@email.com</td>
-                    <td>(11) 9765-4321</td>
-                    <td>12.345.678/0001-90</td>
-                    <td><span class="status-badge status-descontinuado">Contrato Encerrado</span></td>
+                    <td>200</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>4</td>
+                    <td>Ajuste</td>
+                    <td>Produto D</td>
                     <td>Fornecedor D</td>
-                    <td>fornecedorD@email.com</td>
-                    <td>(11) 9654-3210</td>
-                    <td>23.456.789/0001-80</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
+                    <td>10</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>5</td>
+                    <td>Entrada</td>
+                    <td>Produto E</td>
                     <td>Fornecedor E</td>
-                    <td>fornecedorE@email.com</td>
-                    <td>(11) 9543-2109</td>
-                    <td>34.567.890/0001-70</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
+                    <td>62</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>6</td>
+                    <td>Saída</td>
+                    <td>Produto F</td>
                     <td>Fornecedor F</td>
-                    <td>fornecedorF@email.com</td>
-                    <td>(11) 9432-1098</td>
-                    <td>45.678.901/0001-60</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
+                    <td>45</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>7</td>
+                    <td>Entrada</td>
+                    <td>Produto G</td>
                     <td>Fornecedor G</td>
-                    <td>fornecedorG@email.com</td>
-                    <td>(11) 9321-0987</td>
-                    <td>56.789.012/0001-50</td>
-                    <td><span class="status-badge status-pausado">Contrato Pausado</span></td>
+                    <td>56</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>8</td>
+                    <td>Entrada</td>
+                    <td>Produto H</td>
                     <td>Fornecedor H</td>
-                    <td>fornecedorH@email.com</td>
-                    <td>(11) 9210-9876</td>
-                    <td>67.890.123/0001-40</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
+                    <td>67</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>9</td>
+                    <td>Saída</td>
+                    <td>Produto I</td>
                     <td>Fornecedor I</td>
-                    <td>fornecedorI@email.com</td>
-                    <td>(11) 9109-8765</td>
-                    <td>78.901.234/0001-30</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
+                    <td>78</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>10</td>
+                    <td>Saída</td>
+                    <td>Produto J</td>
                     <td>Fornecedor J</td>
-                    <td>fornecedorJ@email.com</td>
-                    <td>(11) 9098-7654</td>
-                    <td>89.012.345/0001-20</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
+                    <td>89</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>11</td>
+                    <td>Entrada</td>
+                    <td>Produto K</td>
                     <td>Fornecedor K</td>
-                    <td>fornecedorK@email.com</td>
-                    <td>(11) 9123-4567</td>
-                    <td>90.123.456/0001-10</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
+                    <td>90</td>
                     <td class="actions">
-                        <a href="visualizacaoFornecedor.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </a>
                     </td>
@@ -226,6 +224,6 @@
             </table>
         </section>
     </main>
-    <script src="js/theme.js"></script>
+    <script th:src="@{/js/theme.js}"></script>
 </body>
 </html>

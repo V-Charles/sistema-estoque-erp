@@ -8,7 +8,7 @@ import br.com.vinicius.estoque.service.UsuarioService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Main {
+public class MainTestes {
 
     public static void main(String[] args) {
         System.out.println("--- Iniciando Sistema de Estoque (teste) ---");

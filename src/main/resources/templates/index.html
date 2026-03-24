@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Inventory System</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" th:href="@{css/global.css}">
+    <link rel="stylesheet" th:href="@{css/login.css}">
 </head>
 <body class="body-login">
     <main class="login-container">
         <div class="login-card">
             <h1>Login</h1>
-            <form action="dashboard.html" method="get">
+            <form th:action="@{/dashboard}" method="get">
                 <div class="input-group">
-                    <label for="usuario">E-mail:</label>
+                    <label for="email">E-mail:</label>
                     <input type="email" id="email" class="valida-email" placeholder="usuario@gmail.com" required>
                 </div>
                 <div class="input-group">
@@ -22,14 +22,14 @@
                 </div>
                 <button type="submit" class="btn-login">Entrar</button>
             </form>
-            <a href="recuperarSenha.html" class="link-esqueci">Esqueci minha senha</a>
+            <a th:href="@{/recuperar-senha}" class="link-esqueci">Esqueci minha senha</a>
         </div>
     </main>
     <footer>
         <p>&copy; 2025 - Sistema de Gerenciamento de Estoques. Todos os direitos reservados.</p>
         <p>Contato: viniciuscharles3101@gmail.com</p>
     </footer>
-    <script src="js/theme.js"></script>
-    <script src="js/validation.js"></script>
+    <script th:src="@{/js/theme.js}"></script>
+    <script th:src="@{/js/validation.js}"></script>
 </body>
 </html>

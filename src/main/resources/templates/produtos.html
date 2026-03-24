@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IS - Produtos</title>
-    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div id="area-logo">
-            <a href="dashboard.html">
-                <img src="images/InventorySystem.Logo-light-mod1.png" alt="IS Logo" class="logo-img">
+            <a th:href="@{/dashboard}">
+                <img th:src="@{/images/InventorySystem.Logo_white.png}" alt="IS Logo" class="logo-img">
             </a>
         </div>
         <nav>
             <div class="nav-links">
-                <a href="dashboard.html">Home</a>
-                <a href="produtos.html" class="active">Produtos</a>
-                <a href="fornecedores.html">Fornecedores</a>
-                <a href="movimentacoes.html">Movimentações</a>
+                <a th:href="@{/dashboard}">Home</a>
+                <a th:href="@{/produtos}" class="active">Produtos</a>
+                <a th:href="@{/fornecedores}">Fornecedores</a>
+                <a th:href="@{/movimentacoes}">Movimentações</a>
             </div>
             <div class="user-controls">
 
                 <div class="vertical-divider"></div>
 
-                <a href="index.html" class="btn-sair">
+                <a th:href="@{/index}" class="btn-sair">
                     SAIR
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                 </a>
                 <label class="theme-switch">
                     <input type="checkbox" id="checkbox-theme">
                     <span class="slider">
-                            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        </span>
+                        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </span>
                 </label>
             </div>
         </nav>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="button-group">
                         <button type="button" class="btn-limpar">Limpar</button>
-                        <a href="cadastroProdutos.html" class="btn-padrao">+ Novo produto</a>
+                        <a th:href="@{/cadastro-produtos}" class="btn-padrao">+ Novo produto</a>
                     </div>
                 </form>
             </div>
@@ -93,10 +93,10 @@
                         <td>R$ 8.000,00</td>
                         <td><span class="status-badge status-ativo">Ativo</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -110,10 +110,10 @@
                         <td>R$ 1.980,00</td>
                         <td><span class="status-badge status-pausado">Pausado</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -127,10 +127,10 @@
                         <td>R$ 24.000,00</td>
                         <td><span class="status-badge status-descontinuado">Descontinuado</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -144,10 +144,10 @@
                         <td>R$ 1.500,00</td>
                         <td><span class="status-badge status-ativo">Ativo</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -161,10 +161,10 @@
                         <td>R$ 500,00</td>
                         <td><span class="status-badge status-ativo">Ativo</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -178,10 +178,10 @@
                         <td>R$ 12.000,00</td>
                         <td><span class="status-badge status-ativo">Ativo</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -195,10 +195,10 @@
                         <td>R$ 2.400,00</td>
                         <td><span class="status-badge status-pausado">Pausado</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -212,10 +212,10 @@
                         <td>R$ 9.000,00</td>
                         <td><span class="status-badge status-ativo">Ativo</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -229,10 +229,10 @@
                         <td>R$ 9.000,00</td>
                         <td><span class="status-badge status-ativo">Ativo</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -246,10 +246,10 @@
                         <td>R$ 9.000,00</td>
                         <td><span class="status-badge status-ativo">Ativo</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -263,10 +263,10 @@
                         <td>R$ 9.000,00</td>
                         <td><span class="status-badge status-ativo">Ativo</span></td>
                         <td class="actions">
-                            <a href="visualizacaoProduto.html" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a href="registraMovimentacao.html" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
@@ -275,6 +275,6 @@
             </table>
         </section>
     </main>
-    <script src="js/theme.js"></script>
+    <script th:src="@{/js/theme.js}"></script>
 </body>
 </html>
