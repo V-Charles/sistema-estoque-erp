@@ -45,31 +45,27 @@
                 <h1>Novo Fornecedor</h1>
             </div>
             <section class="form-card">
-                <form th:action="@{/cadastro-fornecedores}" method="">
+                <form th:action="@{/fornecedores/salvar}" method="POST" th:object="${fornecedor}">
                     <div class="form-grid">
                         <div class="form-column">
                             <div class="input-wrapper">
                                 <label for="nome-fornecedor">Nome do Fornecedor</label>
-                                <input type="text" id="nome-fornecedor" name="nome-fornecedor" class="form-input" required>
+                                <input type="text" id="nome-fornecedor" th:field="*{razaoSocial}" class="form-input" required>
                             </div>
                             <div class="input-wrapper">
-                                <label for="email-fornecedor">E-mail</label>
-                                <input type="email" id="email" class="form-input valida-email" placeholder="contato@empresa.com" required>
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" th:field="*{email}" class="form-input valida-email" placeholder="contato@empresa.com" required>
                             </div>
                             <div class="input-wrapper">
-                                <label for="telefone-fornecedor">Telefone</label>
-                                <input type="text" id="telefone" class="form-input mask-telefone valida-telefone" placeholder="(00) 00000-0000" maxlength="15" required>
+                                <label for="telefone">Telefone</label>
+                                <input type="text" id="telefone" th:field="*{telefone}" class="form-input mask-telefone valida-telefone" placeholder="(00) 00000-0000" maxlength="15" required>
                             </div>
                         </div>
 
                         <div class="form-column">
                             <div class="input-wrapper">
                                 <label for="cnpj">CNPJ</label>
-                                <input type="text" id="cnpj" class="form-input mask-cnpj valida-cnpj" placeholder="00.000.000/0000-00" required>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="data-cadastro">Data de cadastro</label>
-                                <input type="date" id="data-cadastro" name="data-cadastro" class="form-input">
+                                <input type="text" id="cnpj" th:field="*{cnpj}" class="form-input mask-cnpj valida-cnpj" placeholder="00.000.000/0000-00" required>
                             </div>
                         </div>
                     </div>

@@ -3,10 +3,10 @@ package br.com.vinicius.estoque.controller;
 import br.com.vinicius.estoque.service.EstoqueService;
 import br.com.vinicius.estoque.service.FornecedorService;
 import br.com.vinicius.estoque.service.ProdutoService;
-import org.hibernate.bytecode.enhance.internal.bytebuddy.ModelTypePool;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PaginasController {
@@ -59,8 +59,15 @@ public class PaginasController {
     }
 
     @GetMapping("/cadastro-fornecedores")
-    public String paginaCadastroFornecedores(){
+    public String paginaCadastroFornecedores(Model model){
+        model.addAttribute("fornecedor", new br.com.vinicius.estoque.model.Fornecedor());
         return "cadastroFornecedores";
+    }
+
+    @PostMapping("/fornecedores/salvar")
+    public String salvarFornecedor(br.com.vinicius.estoque.model.Fornecedor fornecedor){
+        fornecedorService.cadastrar(fornecedor);
+        return "redirect:/fornecedores";
     }
 
     @GetMapping("/visualizar-fornecedor")
