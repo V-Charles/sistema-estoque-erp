@@ -1,12 +1,28 @@
 package br.com.vinicius.estoque.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="fornecedores")
 public class Fornecedor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false, length = 150)
     private String razaoSocial;
+
+    @Column(nullable = false, unique = true, length = 20)
     private String cnpj;
+
+    @Column(length = 100)
     private String email;
+
+    @Column(length = 20)
     private String telefone;
+
+    @Column(nullable = false)
     private boolean ativo;
 
     public Fornecedor() { }
