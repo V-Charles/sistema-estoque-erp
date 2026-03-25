@@ -1,20 +1,47 @@
 package br.com.vinicius.estoque.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "produtos")
 public class Produto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false, length = 150)
     private String nome;
+
+    @Column(columnDefinition = "TEXT")
     private String descricao;
+
+    @Column(nullable = false)
     private LocalDate dataCadastro;
+
+    @Column(nullable = false)
     private Double precoCusto;
+
+    @Column(nullable = false)
     private Double precoVenda;
+
+    @Column(nullable = false)
     private Integer quantidadeTotalEstoque;
+
+    @Column(nullable = false)
     private Integer quantidadeMinimo;
+
+    @Column(nullable = false)
     private boolean ativo;
 
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
     private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "fornecedor_id", nullable = false)
     private Fornecedor fornecedor;
 
     public Produto () { }
