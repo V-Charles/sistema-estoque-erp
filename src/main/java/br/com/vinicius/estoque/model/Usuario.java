@@ -1,13 +1,29 @@
 package br.com.vinicius.estoque.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false, length = 100)
     private String nome;
+
+    @Column(nullable = false, unique = true, length = 50)
     private String login;
+
+    @Column(nullable = false, length = 255)
     private String senha;
+
+    @Column(nullable = false)
     private boolean ativo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
     private Perfil perfil;
 
     public Usuario () { }

@@ -1,17 +1,39 @@
 package br.com.vinicius.estoque.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "movimentacoes")
 public class Movimentacao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private LocalDateTime dataHora;
+
+    @Column(nullable = false)
     private Integer quantidade;
+
+    @Column(nullable = false)
     private Double valorUnitario;
+
+    @Column(columnDefinition = "TEXT")
     private String observacao;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
     private TipoMovimentacao tipoMovimentacao;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
 
     public Movimentacao () { }
