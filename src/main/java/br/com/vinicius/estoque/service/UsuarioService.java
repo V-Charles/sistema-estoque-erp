@@ -2,11 +2,40 @@ package br.com.vinicius.estoque.service;
 
 import br.com.vinicius.estoque.model.Perfil;
 import br.com.vinicius.estoque.model.Usuario;
+import br.com.vinicius.estoque.repository.UsuarioRepository;
+import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Optional;
 
+@Service
 public class UsuarioService {
+
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioService(UsuarioRepository usuarioRepository){
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    public List<Usuario> listarTodos(){
+        return usuarioRepository.findAll();
+    }
+
+    public Usuario cadastrar(Usuario usuario){
+        if(usuario.getLogin() == null || usuario.getLogin().trim().isEmpty()){
+            throw new IllegalArgumentException("Login é obrigatório.");
+        }
+        if(usuario.getSenha() == null || usuario.getSenha().trim().isEmpty()){
+            throw new IllegalArgumentException("Senha é obrigatória.");
+        }
+
+        usuario.setSenha(gerarMD5(usuario.getSenha()));
+        usuario.setAtivo(true);
+
+        return usuarioRepository.save(usuario);
+    }
 
     public Usuario autenticar(String login, String senhaPura) {
         if (login == null || login.trim().isEmpty()) {
@@ -19,12 +48,12 @@ public class UsuarioService {
 
         String senhaCriptografada = gerarMD5(senhaPura);
 
-        // simulação temporária
-        Usuario usuarioDoBanco = simularBuscaNoBanco(login);
-
-        if (usuarioDoBanco == null) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByLogin(login);
+        if(usuarioOpt.isEmpty()){
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
+
+        Usuario usuarioDoBanco = usuarioOpt.get();
 
         if (!usuarioDoBanco.getSenha().equals(senhaCriptografada)) {
             throw new IllegalArgumentException("Senha incorreta.");
@@ -49,21 +78,5 @@ public class UsuarioService {
         } catch (NoSuchAlgorithmException e){
             throw new RuntimeException("Erro ao criptografar senha: " + e.getMessage());
         }
-    }
-
-    // Simula busca no banco
-    private Usuario simularBuscaNoBanco(String login){
-        if ("vinicius.admin".equals(login)){
-            Usuario u = new Usuario();
-            u.setId(1);
-            u.setNome("Vinicius");
-            u.setLogin("vinicius.admin");
-            // MD5 de 123
-            u.setSenha("202cb962ac59075b964b07152d234b70");
-            u.setAtivo(true);
-            u.setPerfil(Perfil.GERENTE);
-            return u;
-        }
-        return null;
     }
 }

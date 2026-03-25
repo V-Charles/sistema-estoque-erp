@@ -1,12 +1,26 @@
 package br.com.vinicius.estoque.service;
 
 import br.com.vinicius.estoque.model.Produto;
+import br.com.vinicius.estoque.repository.ProdutoRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
+@Service
 public class ProdutoService {
 
-    public void cadastrar(Produto produto) {
+    private final ProdutoRepository produtoRepository;
+
+    public ProdutoService(ProdutoRepository produtoRepository){
+        this.produtoRepository = produtoRepository;
+    }
+
+    public List<Produto> listarTodos(){
+        return produtoRepository.findAll();
+    }
+
+    public Produto cadastrar(Produto produto) {
         validarDadosObrigatorios(produto);
         validarPrecos(produto);
 
@@ -14,11 +28,12 @@ public class ProdutoService {
             produto.setDataCadastro(LocalDate.now());
         }
 
-        System.out.println("Produto cadastrado com sucesso: " + produto.getNome());
-        System.out.println("Fornecedor vinculado: " + (produto.getFornecedor() != null ? produto.getFornecedor().getRazaoSocial() : "Nenhum"));
+        produto.setAtivo(true);
+
+        return produtoRepository.save(produto);
     }
 
-    public void atualizar(Produto produto) {
+    public Produto atualizar(Produto produto) {
         if (produto.getId() == null) {
             throw new IllegalArgumentException("ID do produto é obrigatório para atualização.");
         }
@@ -26,7 +41,7 @@ public class ProdutoService {
         validarDadosObrigatorios(produto);
         validarPrecos(produto);
 
-        System.out.println("Produto atualizado com sucesso: " + produto.getNome());
+        return produtoRepository.save(produto);
     }
 
     public Double calcularPrecoVenda(Double custo, Double margemLucroPercentagem) {

@@ -1,18 +1,33 @@
 package br.com.vinicius.estoque.service;
 
 import br.com.vinicius.estoque.model.Fornecedor;
+import br.com.vinicius.estoque.repository.FornecedorRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class FornecedorService {
 
-    public void cadastrar(Fornecedor fornecedor) {
+    private final FornecedorRepository fornecedorRepository;
+
+    public FornecedorService(FornecedorRepository fornecedorRepository){
+        this.fornecedorRepository = fornecedorRepository;
+    }
+
+    public List<Fornecedor> listarTodos(){
+        return fornecedorRepository.findAll();
+    }
+
+    public Fornecedor cadastrar(Fornecedor fornecedor) {
         validarCamposObrigatorios(fornecedor);
         limparFormatacao(fornecedor);
 
-        // simulação da persistência
-        System.out.println("Fornecedor cadastrado com sucesso: " + fornecedor.getRazaoSocial());
+        fornecedor.setAtivo(true);
+        return fornecedorRepository.save(fornecedor);
     }
 
-    public void atualizar(Fornecedor fornecedor) {
+    public Fornecedor atualizar(Fornecedor fornecedor) {
         if (fornecedor.getId() == null) {
             throw new IllegalArgumentException("ID é obrigatório para atualização.");
         }
@@ -20,7 +35,7 @@ public class FornecedorService {
         validarCamposObrigatorios(fornecedor);
         limparFormatacao(fornecedor);
 
-        System.out.println("Fornecedor atualizado com sucesso: " + fornecedor.getRazaoSocial());
+        return fornecedorRepository.save(fornecedor);
     }
 
     private void validarCamposObrigatorios(Fornecedor f) {

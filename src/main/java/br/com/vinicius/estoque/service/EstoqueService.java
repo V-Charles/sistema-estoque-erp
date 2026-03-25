@@ -4,10 +4,30 @@ import br.com.vinicius.estoque.model.Movimentacao;
 import br.com.vinicius.estoque.model.Produto;
 import br.com.vinicius.estoque.model.TipoMovimentacao;
 import br.com.vinicius.estoque.model.Usuario;
+import br.com.vinicius.estoque.repository.MovimentacaoRepository;
+import br.com.vinicius.estoque.repository.ProdutoRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
+import org.w3c.dom.stylesheets.LinkStyle;
 
+import java.util.List;
+
+@Service
 public class EstoqueService {
 
-    public void realizarMovimentacao(Movimentacao movimentacao) {
+    private final MovimentacaoRepository movimentacaoRepository;
+    private final ProdutoRepository produtoRepository;
+
+    public EstoqueService(MovimentacaoRepository movimentacaoRepository, ProdutoRepository produtoRepository){
+        this.movimentacaoRepository = movimentacaoRepository;
+        this.produtoRepository = produtoRepository;
+    }
+
+    public List<Movimentacao> listarTodas(){
+        return movimentacaoRepository.findAll();
+    }
+
+    public Movimentacao realizarMovimentacao(Movimentacao movimentacao) {
         Produto produto = movimentacao.getProduto();
 
         if (movimentacao.getTipoMovimentacao() == TipoMovimentacao.ENTRADA) {
@@ -24,8 +44,9 @@ public class EstoqueService {
         }
 
         atualizarSaldoProduto(movimentacao);
+        produtoRepository.save(produto);
 
-        System.out.println("Movimentação realizada com sucesso! Novo saldo: " + produto.getQuantidadeTotalEstoque());
+        return movimentacaoRepository.save(movimentacao);
     }
 
     private boolean verificarEstoqueInsuficiente(Produto produto, Integer quantidadeSaida) {
@@ -50,7 +71,8 @@ public class EstoqueService {
         }
     }
 
-    public void criarMovimentacao(Produto produto, Integer quantidade, TipoMovimentacao tipo, String observacao, Usuario usuario) {
+    @Transactional
+    public Movimentacao criarMovimentacao(Produto produto, Integer quantidade, TipoMovimentacao tipo, String observacao, Usuario usuario) {
         if (quantidade == null || quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser um número positivo maior que zero.");
         }
@@ -64,6 +86,6 @@ public class EstoqueService {
 
         mov.setDataHora(java.time.LocalDateTime.now());
 
-        realizarMovimentacao(mov);
+        return realizarMovimentacao(mov);
     }
 }
