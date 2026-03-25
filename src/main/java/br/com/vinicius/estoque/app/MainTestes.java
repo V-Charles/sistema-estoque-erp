@@ -1,3 +1,4 @@
+/*
 package br.com.vinicius.estoque.app;
 
 import br.com.vinicius.estoque.model.*;
@@ -103,3 +104,4 @@ public class MainTestes {
         System.out.println("\n--- Fim dos testes ---");
     }
 }
+*/

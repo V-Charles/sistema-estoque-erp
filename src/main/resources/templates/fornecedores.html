@@ -68,160 +68,41 @@
         <section class="table-content-scroll">
             <table>
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome fornecedor</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>CNPJ</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome fornecedor</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>CNPJ</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Fornecedor A</td>
-                    <td>fornecedorA@email.com</td>
-                    <td>(11) 9999-8888</td>
-                    <td>12.345.678/0001-90</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Fornecedor B</td>
-                    <td>fornecedorB@email.com</td>
-                    <td>(11) 9876-5432</td>
-                    <td>98.765.432/0001-00</td>
-                    <td><span class="status-badge status-pausado">Contrato Pausado</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Fornecedor C</td>
-                    <td>fornecedorC@email.com</td>
-                    <td>(11) 9765-4321</td>
-                    <td>12.345.678/0001-90</td>
-                    <td><span class="status-badge status-descontinuado">Contrato Encerrado</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Fornecedor D</td>
-                    <td>fornecedorD@email.com</td>
-                    <td>(11) 9654-3210</td>
-                    <td>23.456.789/0001-80</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Fornecedor E</td>
-                    <td>fornecedorE@email.com</td>
-                    <td>(11) 9543-2109</td>
-                    <td>34.567.890/0001-70</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Fornecedor F</td>
-                    <td>fornecedorF@email.com</td>
-                    <td>(11) 9432-1098</td>
-                    <td>45.678.901/0001-60</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Fornecedor G</td>
-                    <td>fornecedorG@email.com</td>
-                    <td>(11) 9321-0987</td>
-                    <td>56.789.012/0001-50</td>
-                    <td><span class="status-badge status-pausado">Contrato Pausado</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Fornecedor H</td>
-                    <td>fornecedorH@email.com</td>
-                    <td>(11) 9210-9876</td>
-                    <td>67.890.123/0001-40</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Fornecedor I</td>
-                    <td>fornecedorI@email.com</td>
-                    <td>(11) 9109-8765</td>
-                    <td>78.901.234/0001-30</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Fornecedor J</td>
-                    <td>fornecedorJ@email.com</td>
-                    <td>(11) 9098-7654</td>
-                    <td>89.012.345/0001-20</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Fornecedor K</td>
-                    <td>fornecedorK@email.com</td>
-                    <td>(11) 9123-4567</td>
-                    <td>90.123.456/0001-10</td>
-                    <td><span class="status-badge status-ativo">Contrato Ativo</span></td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-fornecedor}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
+                    <tr th:each="fornecedor : ${listaFornecedores}">
+                        <td th:text="${fornecedor.id}">1</td>
+                        <td th:text="${fornecedor.razaoSocial}">Fornecedor A</td>
+                        <td th:text="${fornecedor.email}">fornecedorA@email.com</td>
+                        <td th:text="${fornecedor.telefone}">(11) 9999-8888</td>
+                        <td th:text="${fornecedor.cnpj}">12.345.678/0001-90</td>
+                        <td>
+                            <span class="status-badge"
+                                  th:classappend="${fornecedor.ativo ? 'status-ativo' : 'status-descontinuado'}"
+                                  th:text="${fornecedor.ativo ? 'Contrato Ativo' : 'Contrato Encerrado'}">
+                                Contrato Ativo
+                            </span>
+                        </td>
+                        <td class="actions">
+                            <a th:href="@{/visualizar-fornecedor(id=${fornecedor.id})}" class="btn-action btn-view" title="Visualizar Detalhes">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(listaFornecedores)}">
+                        <td colspan="7" style="text-align: center; padding: 2rem; color: #666;">
+                            Nenhum fornecedor cadastrado no banco de dados.
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </section>
