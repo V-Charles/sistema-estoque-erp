@@ -84,191 +84,32 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Teclado Mecânico</td>
-                        <td>Periféricos</td>
-                        <td>World Tech</td>
-                        <td>32</td>
-                        <td>R$ 8.000,00</td>
-                        <td><span class="status-badge status-ativo">Ativo</span></td>
+                    <tr th:each="produto : ${listaProdutos}">
+                        <td th:text="${produto.id}">1</td>
+                        <td th:text="${produto.nome}">Teclado Mecânico</td>
+                        <td th:text="${produto.categoria.descricao}">Periféricos</td>
+                        <td th:text="${produto.fornecedor.razaoSocial}">World Tech</td>
+                        <td th:text="${produto.quantidadeTotalEstoque}">32</td>
+                        <td th:text="|R$ ${#numbers.formatDecimal(produto.precoVenda, 1, 'POINT', 2, 'COMMA')}|">R$ 8.000,00</td>
+                        <td>
+                            <span class="status-badge"
+                                  th:classappend="${produto.ativo ? 'status-ativo' : 'status-descontinuado'}"
+                                  th:text="${produto.ativo ? 'Ativo' : 'Inativo'}">
+                                Ativo
+                            </span>
+                        </td>
                         <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
+                            <a th:href="@{/visualizar-produto(id=${produto.id})}" class="btn-action btn-view" title="Visualizar Detalhes">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
+                            <a th:href="@{/registra-movimentacao(produtoId=${produto.id})}" class="btn-action btn-movi" title="Registrar Movimentação">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
                             </a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mouse Gamer</td>
-                        <td>Periféricos</td>
-                        <td>World Tech</td>
-                        <td>18</td>
-                        <td>R$ 1.980,00</td>
-                        <td><span class="status-badge status-pausado">Pausado</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Monitor 29'</td>
-                        <td>TV's e Monitores</td>
-                        <td>World Tech</td>
-                        <td>16</td>
-                        <td>R$ 24.000,00</td>
-                        <td><span class="status-badge status-descontinuado">Descontinuado</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Gabinete ATX</td>
-                        <td>Hardware</td>
-                        <td>Kabum</td>
-                        <td>10</td>
-                        <td>R$ 1.500,00</td>
-                        <td><span class="status-badge status-ativo">Ativo</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Cabo HDMI</td>
-                        <td>Periféricos</td>
-                        <td>China Imp.</td>
-                        <td>100</td>
-                        <td>R$ 500,00</td>
-                        <td><span class="status-badge status-ativo">Ativo</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>SSD 1TB</td>
-                        <td>Hardware</td>
-                        <td>Kingston</td>
-                        <td>25</td>
-                        <td>R$ 12.000,00</td>
-                        <td><span class="status-badge status-ativo">Ativo</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Webcam</td>
-                        <td>Periféricos</td>
-                        <td>Logitech</td>
-                        <td>12</td>
-                        <td>R$ 2.400,00</td>
-                        <td><span class="status-badge status-pausado">Pausado</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Headset</td>
-                        <td>Áudio</td>
-                        <td>HyperX</td>
-                        <td>30</td>
-                        <td>R$ 9.000,00</td>
-                        <td><span class="status-badge status-ativo">Ativo</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Headset</td>
-                        <td>Áudio</td>
-                        <td>HyperX</td>
-                        <td>30</td>
-                        <td>R$ 9.000,00</td>
-                        <td><span class="status-badge status-ativo">Ativo</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Headset</td>
-                        <td>Áudio</td>
-                        <td>HyperX</td>
-                        <td>30</td>
-                        <td>R$ 9.000,00</td>
-                        <td><span class="status-badge status-ativo">Ativo</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td>Headset</td>
-                        <td>Áudio</td>
-                        <td>HyperX</td>
-                        <td>30</td>
-                        <td>R$ 9.000,00</td>
-                        <td><span class="status-badge status-ativo">Ativo</span></td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
+                    <tr th:if="${#lists.isEmpty(listaProdutos)}">
+                        <td colspan="8" style="text-align: center; padding: 2rem; color: #666;">
+                            Nenhum produto cadastrado no banco de dados.
                         </td>
                     </tr>
                 </tbody>
