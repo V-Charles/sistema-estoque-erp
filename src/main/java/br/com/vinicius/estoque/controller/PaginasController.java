@@ -43,8 +43,17 @@ public class PaginasController {
     }
 
     @GetMapping("/cadastro-produtos")
-    public String paginaCadastroProdutos(){
+    public String paginaCadastroProdutos(Model model){
+        model.addAttribute("produto", new br.com.vinicius.estoque.model.Produto());
+        model.addAttribute("listaCategorias", br.com.vinicius.estoque.model.Categoria.values());
+        model.addAttribute("listaFornecedores", fornecedorService.listarTodos());
         return "cadastroProdutos";
+    }
+
+    @PostMapping("/produtos/salvar")
+    public String salvarProduto(br.com.vinicius.estoque.model.Produto produto){
+        produtoService.cadastrar(produto);
+        return "redirect:/produtos";
     }
 
     @GetMapping("/visualizar-produto")

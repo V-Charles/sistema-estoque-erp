@@ -1,50 +1,19 @@
 package br.com.vinicius.estoque.model;
 
-import jakarta.persistence.*;
+public enum Categoria {
+    PERIFERICOS("Periféricos"),
+    HARDWARE("Componentes de Hardware"),
+    MONITORES("Telas e Monitores"),
+    REDES("Cabeamento e Redes"),
+    ACESSORIOS("Acessórios Diversos");
 
-@Entity
-@Table(name="categorias")
-public class Categoria {
+    private String descricao;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(nullable = false, unique = true, length = 100)
-    private String nome;
-
-    @Column(nullable = false)
-    private boolean ativo;
-
-    public Categoria() { }
-
-    public Categoria(Integer id, String nome, boolean ativo){
-        this.id = id;
-        this.nome = nome;
-        this.ativo = ativo;
+    Categoria(String descricao){
+        this.descricao = descricao;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public String getDescricao(){
+        return descricao;
     }
 }

@@ -30,6 +30,10 @@ public class ProdutoService {
 
         produto.setAtivo(true);
 
+        if(produto.getQuantidadeTotalEstoque() == null){
+            produto.setQuantidadeTotalEstoque(0);
+        }
+
         return produtoRepository.save(produto);
     }
 

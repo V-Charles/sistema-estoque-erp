@@ -45,51 +45,58 @@
                 <h1>Novo Produto</h1>
             </div>
             <section class="form-card">
-                <form th:action="@{/cadastro-produtos}" method="">
+                <form th:action="@{/produtos/salvar}" method="POST" th:object="${produto}">
                     <div class="form-grid">
                         <div class="form-column">
                             <div class="input-wrapper">
-                                <label for="nome-produto">Nome do Produto</label>
-                                <input type="text" id="nome-produto" name="nome-produto" class="form-input" required>
+                                <label for="nome">Nome do Produto</label>
+                                <input type="text" id="nome" th:field="*{nome}" class="form-input" required>
                             </div>
-                            <div class="input-wrapper">
-                                <label for="valor-unitario">Valor Unitário (Venda)</label>
-                                <div class="input-with-prefix">
-                                    <span>R$</span>
-                                    <input type="text" id="valor-unitario" class="form-input mask-dinheiro" placeholder="0,00" required>
+                            <div style="display: flex; gap: 1rem;">
+                                <div class="input-wrapper" style="flex: 1;">
+                                    <label for="precoCusto">Valor de Custo</label>
+                                    <div class="input-with-prefix">
+                                        <span>R$</span>
+                                        <input type="text" id="precoCusto" th:field="*{precoCusto}" class="form-input mask-dinheiro" placeholder="0,00" required>
+                                    </div>
+                                </div>
+                                <div class="input-wrapper" style="flex: 1;">
+                                    <label for="precoVenda">Valor Unitário</label>
+                                    <div class="input-with-prefix">
+                                        <span>R$</span>
+                                        <input type="text" id="precoVenda" th:field="*{precoVenda}" class="form-input mask-dinheiro" placeholder="0,00" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="input-wrapper">
-                                <label for="valor-custo">Valor de Custo (Unitário)</label>
-                                <div class="input-with-prefix">
-                                    <span>R$</span>
-                                    <input type="text" id="valor-custo" class="form-input mask-dinheiro" placeholder="0,00" min="0.01" step="0.01" required>
+                            <div style="display: flex; gap: 1rem;">
+                                <div class="input-wrapper" style="flex: 1;">
+                                    <label for="estoqueMinimo">Estoque Mínimo</label>
+                                    <input type="number" id="estoqueMinimo" th:field="*{quantidadeMinimo}" class="form-input" min="0" required>
                                 </div>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="categoria">Categoria</label>
-                                <select id="categoria" name="categoria" class="form-input" required>
-                                    <option value="">Selecione</option>
-                                    <option value="Periféricos">Periféricos</option>
-                                    <option value="Hardware">Hardware</option>
-                                </select>
                             </div>
                         </div>
                         <div class="form-column">
-                            <div class="input-wrapper full-width">
-                                <label for="descricao">Descrição</label>
-                                <textarea id="descricao" name="descricao" class="form-input" rows="5" required></textarea>
-                            </div>
                             <div class="input-wrapper">
-                                <label for="data-cadastro">Data de cadastro</label>
-                                <input type="date" id="data-cadastro" name="data-cadastro" class="form-input">
+                                <label for="categoria">Categoria</label>
+                                <select id="categoria" th:field="*{categoria}" class="form-input" required>
+                                    <option value="">Selecione a Categoria</option>
+                                    <option th:each="cat : ${listaCategorias}"
+                                            th:value="${cat}"
+                                            th:text="${cat.descricao}">Categoria Fictícia</option>
+                                </select>
                             </div>
                             <div class="input-wrapper">
                                 <label for="fornecedor">Fornecedor</label>
-                                <select id="fornecedor" name="fornecedor" class="form-input" required>
-                                    <option value="">Selecione</option>
-                                    <option value="World Tech">World Tech</option>
+                                <select id="fornecedor" th:field="*{fornecedor}" class="form-input" required>
+                                    <option value="">Selecione o Fornecedor</option>
+                                    <option th:each="forn : ${listaFornecedores}"
+                                            th:value="${forn.id}"
+                                            th:text="${forn.razaoSocial}">Fornecedor Fictício</option>
                                 </select>
+                            </div>
+                            <div class="input-wrapper full-width">
+                                <label for="descricao">Descrição</label>
+                                <textarea id="descricao" th:field="*{descricao}" class="form-input" rows="4" required></textarea>
                             </div>
                         </div>
                     </div>

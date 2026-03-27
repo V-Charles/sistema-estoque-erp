@@ -1,7 +1,7 @@
 package br.com.vinicius.estoque.model;
 
 import jakarta.persistence.*;
-
+import org.springframework.format.annotation.NumberFormat;
 import java.time.LocalDate;
 
 @Entity
@@ -21,9 +21,11 @@ public class Produto {
     @Column(nullable = false)
     private LocalDate dataCadastro;
 
+    @NumberFormat(pattern = "#,##0.00")
     @Column(nullable = false)
     private Double precoCusto;
 
+    @NumberFormat(pattern = "#,##0.00")
     @Column(nullable = false)
     private Double precoVenda;
 
@@ -36,8 +38,8 @@ public class Produto {
     @Column(nullable = false)
     private boolean ativo;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
     private Categoria categoria;
 
     @ManyToOne
