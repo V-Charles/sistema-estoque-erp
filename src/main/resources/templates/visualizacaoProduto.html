@@ -32,9 +32,9 @@
                 <label class="theme-switch">
                     <input type="checkbox" id="checkbox-theme">
                     <span class="slider">
-                        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                    </span>
+                            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </span>
                 </label>
             </div>
         </nav>
@@ -45,12 +45,18 @@
                 <h1>Visualização e Edição de produtos</h1>
             </div>
             <div class="product-view-layout">
-                <div class="form-card">
+                <form class="form-card" id="formEdicao" th:action="@{/produtos/atualizar}" method="POST" th:object="${produto}">
+
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{dataCadastro}">
+                    <input type="hidden" th:field="*{quantidadeTotalEstoque}">
+                    <input type="hidden" th:field="*{quantidadeMinimo}">
+
                     <div class="product-form-grid">
                         <div class="input-group">
                             <label>Nome do produto</label>
                             <div class="editable-field">
-                                <input class="form-input" value="Teclado Mecânico">
+                                <input type="text" class="form-input" th:field="*{nome}" disabled>
                                 <a href="#" class="edit-icon" title="Editar">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                 </a>
@@ -61,7 +67,7 @@
                             <div class="editable-field">
                                 <div class="input-with-prefix">
                                     <span>RS</span>
-                                    <input class="form-input" value="8.000,00">
+                                    <input type="text" class="form-input mask-dinheiro" th:field="*{precoVenda}" disabled>
                                 </div>
                                 <a href="#" class="edit-icon" title="Editar">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
@@ -73,7 +79,7 @@
                             <div class="editable-field">
                                 <div class="input-with-prefix">
                                     <span>RS</span>
-                                    <input class="form-input" value="6.000,00">
+                                    <input type="text" class="form-input mask-dinheiro" th:field="*{precoCusto}" disabled>
                                 </div>
                                 <a href="#" class="edit-icon" title="Editar">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
@@ -83,7 +89,7 @@
                         <div class="input-group full-width">
                             <label>Descrição</label>
                             <div class="editable-field">
-                                <textarea class="form-input">Teclado mecânico de alta qualidade</textarea>
+                                <textarea class="form-input" th:field="*{descricao}" disabled></textarea>
                                 <a href="#" class="edit-icon" title="Editar">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                 </a>
@@ -91,15 +97,13 @@
                         </div>
                         <div class="input-group">
                             <label>Data de cadastro</label>
-                            <input class="form-input" value="15/06/2024" readonly>
+                            <input class="form-input" th:value="${produto.dataCadastro != null ? #temporals.format(produto.dataCadastro, 'dd/MM/yyyy') : ''}" readonly>
                         </div>
                         <div class="input-group">
                             <label for="categoria">Categoria:</label>
                             <div class="editable-field">
-                                <select id="categoria" name="categoria" class="form-input">
-                                    <option value="">Selecione</option>
-                                    <option value="Periféricos">Periféricos</option>
-                                    <option value="Hardware">Hardware</option>
+                                <select id="categoria" name="categoria" class="form-input" th:field="*{categoria}" disabled>
+                                    <option th:each="cat : ${listaCategorias}" th:value="${cat}" th:text="${cat.descricao}"></option>
                                 </select>
                                 <a href="#" class="edit-icon" title="Editar">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
@@ -109,9 +113,8 @@
                         <div class="input-group">
                             <label for="fornecedor">Fornecedor:</label>
                             <div class="editable-field">
-                                <select id="fornecedor" name="fornecedor" class="form-input">
-                                    <option value="">Selecione</option>
-                                    <option value="World Tech">World Tech</option>
+                                <select id="fornecedor" name="fornecedor" class="form-input" th:field="*{fornecedor}" disabled>
+                                    <option th:each="forn : ${listaFornecedores}" th:value="${forn.id}" th:text="${forn.razaoSocial}"></option>
                                 </select>
                                 <a href="#" class="edit-icon" title="Editar">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
@@ -122,49 +125,49 @@
                             <label>Status atual:</label>
                             <div class="radio-group">
                                 <label>
-                                    <input type="radio" name="status" value="ativo" checked> Ativo
+                                    <input type="radio" th:field="*{status}" value="ATIVO"> Ativo
                                 </label>
                                 <label>
-                                    <input type="radio" name="status" value="pausado"> Pausado
+                                    <input type="radio" th:field="*{status}" value="PAUSADO"> Pausado
                                 </label>
                                 <label>
-                                    <input type="radio" name="status" value="descontinuado"> Descontinuado
+                                    <input type="radio" th:field="*{status}" value="DESCONTINUADO"> Descontinuado
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="form-actions">
                         <a th:href="@{/produtos}" class="btn-padrao">Voltar</a>
-                        <button class="btn-padrao">Salvar edição</button>
+                        <button type="submit" id="btnSalvar" class="btn-padrao" disabled>Salvar edição</button>
                     </div>
-                </div>
+                </form>
                 <div class="history-card">
                     <h2>Histórico de movimentações</h2>
                     <div class="history-table-wrapper">
                         <table>
                             <thead>
-                                <tr>
-                                    <th>Tipo de movimentação</th>
-                                    <th>Data da movimentação</th>
-                                    <th>Responsável</th>
-                                </tr>
+                            <tr>
+                                <th>Tipo de movimentação</th>
+                                <th>Data da movimentação</th>
+                                <th>Responsável</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Entrada</td>
-                                    <td>20/06/2024</td>
-                                    <td>João Silva</td>
-                                </tr>
-                                <tr>
-                                    <td>Saída</td>
-                                    <td>25/06/2024</td>
-                                    <td>Maria Oliveira</td>
-                                </tr>
-                                <tr>
-                                    <td>Entrada</td>
-                                    <td>30/06/2024</td>
-                                    <td>Carlos Santos</td>
-                                </tr>
+                            <tr>
+                                <td>Entrada</td>
+                                <td>20/06/2024</td>
+                                <td>João Silva</td>
+                            </tr>
+                            <tr>
+                                <td>Saída</td>
+                                <td>25/06/2024</td>
+                                <td>Maria Oliveira</td>
+                            </tr>
+                            <tr>
+                                <td>Entrada</td>
+                                <td>30/06/2024</td>
+                                <td>Carlos Santos</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -173,5 +176,7 @@
         </div>
     </main>
     <script th:src="@{/js/theme.js}"></script>
+    <script th:src="@{/js/masks.js}"></script>
+    <script th:src="@{/js/edicao.js}"></script>
 </body>
 </html>

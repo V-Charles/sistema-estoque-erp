@@ -93,8 +93,8 @@
                         <td th:text="|R$ ${#numbers.formatDecimal(produto.precoVenda, 1, 'POINT', 2, 'COMMA')}|">R$ 8.000,00</td>
                         <td>
                             <span class="status-badge"
-                                  th:classappend="${produto.ativo ? 'status-ativo' : 'status-descontinuado'}"
-                                  th:text="${produto.ativo ? 'Ativo' : 'Inativo'}">
+                                  th:classappend="${produto.status.classeCss}"
+                                  th:text="${produto.status.descricao}">
                                 Ativo
                             </span>
                         </td>

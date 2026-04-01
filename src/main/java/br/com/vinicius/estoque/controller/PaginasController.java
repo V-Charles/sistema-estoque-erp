@@ -1,5 +1,6 @@
 package br.com.vinicius.estoque.controller;
 
+import br.com.vinicius.estoque.model.Produto;
 import br.com.vinicius.estoque.service.EstoqueService;
 import br.com.vinicius.estoque.service.FornecedorService;
 import br.com.vinicius.estoque.service.ProdutoService;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PaginasController {
@@ -57,8 +59,19 @@ public class PaginasController {
     }
 
     @GetMapping("/visualizar-produto")
-    public String paginaVisualizarProduto(){
+    public String paginaVisualizarProduto(@RequestParam("id") Integer id, Model model){
+        Produto produto = produtoService.buscarPorId(id);
+
+        model.addAttribute("produto", produto);
+        model.addAttribute("listaCategorias", br.com.vinicius.estoque.model.Categoria.values());
+        model.addAttribute("listaFornecedores", fornecedorService.listarTodos());
         return "visualizacaoProduto";
+    }
+
+    @PostMapping("/produtos/atualizar")
+    public String atualizarProduto(br.com.vinicius.estoque.model.Produto produto){
+        produtoService.cadastrar(produto);
+        return "redirect:/produtos";
     }
 
     @GetMapping("/fornecedores")

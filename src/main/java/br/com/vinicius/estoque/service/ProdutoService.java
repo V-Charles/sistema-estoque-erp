@@ -1,6 +1,7 @@
 package br.com.vinicius.estoque.service;
 
 import br.com.vinicius.estoque.model.Produto;
+import br.com.vinicius.estoque.model.StatusProduto;
 import br.com.vinicius.estoque.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,9 @@ public class ProdutoService {
             produto.setDataCadastro(LocalDate.now());
         }
 
-        produto.setAtivo(true);
+        if(produto.getId() == null){
+            produto.setStatus(StatusProduto.ATIVO);
+        }
 
         if(produto.getQuantidadeTotalEstoque() == null){
             produto.setQuantidadeTotalEstoque(0);
@@ -76,5 +79,9 @@ public class ProdutoService {
         if (p.getPrecoVenda() == null || p.getPrecoVenda() < 0) {
             throw new IllegalArgumentException("Preço de venda inválido.");
         }
+    }
+
+    public Produto buscarPorId(Integer id){
+        return produtoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Produto não encontrado no banco de dados."));
     }
 }

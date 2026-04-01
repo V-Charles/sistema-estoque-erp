@@ -35,8 +35,9 @@ public class Produto {
     @Column(nullable = false)
     private Integer quantidadeMinimo;
 
-    @Column(nullable = false)
-    private boolean ativo;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private StatusProduto status;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
@@ -48,7 +49,7 @@ public class Produto {
 
     public Produto () { }
 
-    public Produto(Integer id, String nome, String descricao, LocalDate dataCadastro, Double precoCusto, Double precoVenda, Integer quantidadeTotalEstoque, Integer quantidadeMinimo, boolean ativo, Categoria categoria, Fornecedor fornecedor) {
+    public Produto(Integer id, String nome, String descricao, LocalDate dataCadastro, Double precoCusto, Double precoVenda, Integer quantidadeTotalEstoque, Integer quantidadeMinimo, StatusProduto status, Categoria categoria, Fornecedor fornecedor) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -57,7 +58,7 @@ public class Produto {
         this.precoVenda = precoVenda;
         this.quantidadeTotalEstoque = quantidadeTotalEstoque;
         this.quantidadeMinimo = quantidadeMinimo;
-        this.ativo = ativo;
+        this.status = status;
         this.categoria = categoria;
         this.fornecedor = fornecedor;
     }
@@ -126,12 +127,12 @@ public class Produto {
         this.quantidadeMinimo = quantidadeMinimo;
     }
 
-    public boolean isAtivo() {
-        return ativo;
+    public StatusProduto getStatus() {
+        return status;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setStatus(StatusProduto status) {
+        this.status = status;
     }
 
     public Categoria getCategoria() {
