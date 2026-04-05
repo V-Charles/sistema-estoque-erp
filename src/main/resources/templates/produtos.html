@@ -45,26 +45,25 @@
                 <h1>Produtos</h1>
             </div>
             <div class="filter-bar">
-                <form class="search-group" th:action="@{/produtos}" method="GET">
+                <form class="search-group" onsubmit="event.preventDefault();">
                     <div class="input-wrapper small">
                         <label>ID</label>
-                        <input type="number" class="filter-input" disabled placeholder="...">
+                        <input type="number" id="filtroId" class="filter-input">
                     </div>
                     <div class="input-wrapper">
                         <label>Nome</label>
-                        <input type="text" name="nomeBusca" class="filter-input" th:value="${nomeBusca}">
+                        <input type="text" id="filtroNome" class="filter-input" placeholder="Nome do produto">
                     </div>
                     <div class="input-wrapper">
                         <label>Categoria</label>
-                        <select class="filter-input" disabled>
-                            <option>Em breve...</option>
+                        <select id="filtroCategoria" class="filter-input">
+                            <option value="">Todas</option>
+                            <option th:each="cat : ${listaCategorias}" th:value="${cat}" th:text="${cat.descricao}"></option>
                         </select>
                     </div>
                     <div class="button-group">
-                        <a th:href="@{/produtos}" class="btn-limpar" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Limpar</a>
-
+                        <a href="#" id="btnLimpar" class="btn-limpar" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Limpar</a>
                         <a th:href="@{/cadastro-produtos}" class="btn-padrao">+ Novo produto</a>
-                        <button type="submit" style="display: none;"></button>
                     </div>
                 </form>
             </div>
@@ -72,44 +71,21 @@
         <section class="table-content-scroll">
             <table>
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Categoria</th>
-                    <th>Fornecedor</th>
-                    <th>Quantidade</th>
-                    <th>Valor</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-                </thead>
-                <tbody id="tabelaProdutos" th:fragment="tabelaProdutos">
-                    <tr th:each="produto : ${listaProdutos}">
-                        <td th:text="${produto.id}">1</td>
-                        <td th:text="${produto.nome}">Teclado Mecânico</td>
-                        <td th:text="${produto.categoria.descricao}">Periféricos</td>
-                        <td th:text="${produto.fornecedor.razaoSocial}">World Tech</td>
-                        <td th:text="${produto.quantidadeTotalEstoque}">32</td>
-                        <td th:text="|R$ ${#numbers.formatDecimal(produto.precoVenda, 1, 'POINT', 2, 'COMMA')}|">R$ 8.000,00</td>
-                        <td>
-                            <span class="status-badge"
-                                  th:classappend="${produto.status.classeCss}"
-                                  th:text="${produto.status.descricao}">
-                                Ativo
-                            </span>
-                        </td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-produto(id=${produto.id})}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                            <a th:href="@{/registra-movimentacao(produtoId=${produto.id})}" class="btn-action btn-movi" title="Registrar Movimentação">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
-                            </a>
-                        </td>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Fornecedor</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Ações</th>
                     </tr>
-                    <tr th:if="${#lists.isEmpty(listaProdutos)}">
+                </thead>
+                <tbody id="tabelaProdutos">
+                    <tr>
                         <td colspan="8" style="text-align: center; padding: 2rem; color: #666;">
-                            Nenhum produto cadastrado no banco de dados.
+                            Carregando produtos...
                         </td>
                     </tr>
                 </tbody>
