@@ -45,26 +45,26 @@
                 <h1>Produtos</h1>
             </div>
             <div class="filter-bar">
-                <form class="search-group">
+                <form class="search-group" th:action="@{/produtos}" method="GET">
                     <div class="input-wrapper small">
                         <label>ID</label>
-                        <input type="number" class="filter-input">
+                        <input type="number" class="filter-input" disabled placeholder="...">
                     </div>
                     <div class="input-wrapper">
                         <label>Nome</label>
-                        <input type="text" class="filter-input">
+                        <input type="text" name="nomeBusca" class="filter-input" th:value="${nomeBusca}">
                     </div>
                     <div class="input-wrapper">
                         <label>Categoria</label>
-                        <select class="filter-input">
-                            <option>Selecione</option>
-                            <option>Periféricos</option>
-                            <option>Hardware</option>
+                        <select class="filter-input" disabled>
+                            <option>Em breve...</option>
                         </select>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn-limpar">Limpar</button>
+                        <a th:href="@{/produtos}" class="btn-limpar" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Limpar</a>
+
                         <a th:href="@{/cadastro-produtos}" class="btn-padrao">+ Novo produto</a>
+                        <button type="submit" style="display: none;"></button>
                     </div>
                 </form>
             </div>
@@ -83,7 +83,7 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabelaProdutos" th:fragment="tabelaProdutos">
                     <tr th:each="produto : ${listaProdutos}">
                         <td th:text="${produto.id}">1</td>
                         <td th:text="${produto.nome}">Teclado Mecânico</td>
@@ -117,5 +117,6 @@
         </section>
     </main>
     <script th:src="@{/js/theme.js}"></script>
+    <script th:src="@{/js/filtros.js}"></script>
 </body>
 </html>

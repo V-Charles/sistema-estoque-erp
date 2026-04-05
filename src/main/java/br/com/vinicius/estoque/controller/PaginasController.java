@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class PaginasController {
 
@@ -39,8 +41,26 @@ public class PaginasController {
     }
 
     @GetMapping("/produtos")
-    public String paginaProdutos(Model model){
-        model.addAttribute("listaProdutos", produtoService.listarTodos());
+    public String paginaProdutos(
+            @RequestParam(name = "nomeBusca", required = false) String nomeBusca,
+            @RequestParam(name = "ajax", required = false) Boolean ajax,
+            Model model){
+
+        List<Produto> listaProdutos;
+
+        if(nomeBusca != null && !nomeBusca.trim().isEmpty()){
+            listaProdutos = produtoService.buscarPorNome(nomeBusca);
+        } else {
+            listaProdutos = produtoService.listarTodos();
+        }
+
+        model.addAttribute("listaProdutos", listaProdutos);
+        model.addAttribute("nomeBusca", nomeBusca);
+
+        if(Boolean.TRUE.equals(ajax)){
+            return "produtos :: tabelaProdutos";
+        }
+
         return "produtos";
     }
 

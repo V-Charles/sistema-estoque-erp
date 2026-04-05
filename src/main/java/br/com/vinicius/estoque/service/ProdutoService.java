@@ -84,4 +84,8 @@ public class ProdutoService {
     public Produto buscarPorId(Integer id){
         return produtoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Produto não encontrado no banco de dados."));
     }
+
+    public List<Produto> buscarPorNome(String nome){
+        return produtoRepository.findByNomeContainingIgnoreCase(nome);
+    }
 }
