@@ -1,7 +1,6 @@
 package br.com.vinicius.estoque.controller;
 
 import br.com.vinicius.estoque.model.Produto;
-import br.com.vinicius.estoque.service.EstoqueService;
 import br.com.vinicius.estoque.service.FornecedorService;
 import br.com.vinicius.estoque.service.ProdutoService;
 import org.springframework.stereotype.Controller;
@@ -13,31 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class PaginasController {
+public class ProdutoController {
 
     private final ProdutoService produtoService;
     private final FornecedorService fornecedorService;
-    private final EstoqueService estoqueService;
 
-    public PaginasController(ProdutoService produtoService, FornecedorService fornecedorService, EstoqueService estoqueService){
+    public ProdutoController(ProdutoService produtoService, FornecedorService fornecedorService){
         this.produtoService = produtoService;
         this.fornecedorService = fornecedorService;
-        this.estoqueService = estoqueService;
-    }
-
-    @GetMapping({"/", "/login", "/index"})
-    public String paginaLogin(){
-        return "index";
-    }
-
-    @GetMapping("/recuperar-senha")
-    public String paginaRecuperarSenha(){
-        return "recuperarSenha";
-    }
-
-    @GetMapping("/dashboard")
-    public String paginaDashboard(){
-        return "dashboard";
     }
 
     @GetMapping("/produtos")
@@ -45,12 +27,11 @@ public class PaginasController {
             @RequestParam(name = "nomeBusca", required = false) String nomeBusca,
             @RequestParam(name = "ajax", required = false) Boolean ajax,
             Model model){
-
         List<Produto> listaProdutos;
 
         if(nomeBusca != null && !nomeBusca.trim().isEmpty()){
             listaProdutos = produtoService.buscarPorNome(nomeBusca);
-        } else {
+        }else{
             listaProdutos = produtoService.listarTodos();
         }
 
@@ -73,7 +54,7 @@ public class PaginasController {
     }
 
     @PostMapping("/produtos/salvar")
-    public String salvarProduto(br.com.vinicius.estoque.model.Produto produto){
+    public String salvarProduto(Produto produto){
         produtoService.cadastrar(produto);
         return "redirect:/produtos";
     }
@@ -89,47 +70,8 @@ public class PaginasController {
     }
 
     @PostMapping("/produtos/atualizar")
-    public String atualizarProduto(br.com.vinicius.estoque.model.Produto produto){
+    public String atualizarProduto(Produto produto){
         produtoService.cadastrar(produto);
         return "redirect:/produtos";
-    }
-
-    @GetMapping("/fornecedores")
-    public String paginaFornecedores(Model model){
-        model.addAttribute("listaFornecedores", fornecedorService.listarTodos());
-        return "fornecedores";
-    }
-
-    @GetMapping("/cadastro-fornecedores")
-    public String paginaCadastroFornecedores(Model model){
-        model.addAttribute("fornecedor", new br.com.vinicius.estoque.model.Fornecedor());
-        return "cadastroFornecedores";
-    }
-
-    @PostMapping("/fornecedores/salvar")
-    public String salvarFornecedor(br.com.vinicius.estoque.model.Fornecedor fornecedor){
-        fornecedorService.cadastrar(fornecedor);
-        return "redirect:/fornecedores";
-    }
-
-    @GetMapping("/visualizar-fornecedor")
-    public String paginaVisualizarFornecedor(){
-        return "visualizacaoFornecedor";
-    }
-
-    @GetMapping("/movimentacoes")
-    public String paginaMovimentacoes(Model model){
-        model.addAttribute("listaMovimentacoes", estoqueService.listarTodas());
-        return "movimentacoes";
-    }
-
-    @GetMapping("/registra-movimentacao")
-    public String paginaRegistraMovimentacao(){
-        return "registraMovimentacao";
-    }
-
-    @GetMapping("/visualizar-movimentacao")
-    public String paginaVisualizarMovimentacao(){
-        return "visualizacaoMovimentacao";
     }
 }
