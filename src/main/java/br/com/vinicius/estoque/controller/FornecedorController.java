@@ -7,6 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class FornecedorController {
@@ -18,9 +21,14 @@ public class FornecedorController {
     }
 
     @GetMapping("/fornecedores")
-    public String paginaFornecedores(Model model){
-        model.addAttribute("listaFornecedores", fornecedorService.listarTodos());
+    public String paginaFornecedores(){
         return "fornecedores";
+    }
+
+    @GetMapping("/api/fornecedores")
+    @ResponseBody
+    public List<Fornecedor> listarFornecedoresApi(){
+        return fornecedorService.listarTodos();
     }
 
     @GetMapping("/cadastro-fornecedores")

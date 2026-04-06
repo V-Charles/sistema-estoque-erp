@@ -45,21 +45,21 @@
                 <h1>Fornecedores</h1>
             </div>
             <div class="filter-bar">
-                <form class="search-group">
+                <form class="search-group" onsubmit="event.preventDefault();">
                     <div class="input-wrapper small">
                         <label>ID</label>
-                        <input type="number" class="filter-input">
+                        <input type="number" id="filtroId" class="filter-input">
                     </div>
                     <div class="input-wrapper">
                         <label>Nome</label>
-                        <input type="text" class="filter-input">
+                        <input type="text" id="filtroNome" class="filter-input">
                     </div>
                     <div class="input-wrapper">
                         <label>Telefone</label>
-                        <input type="number" class="filter-input">
+                        <input type="text" id="filtroTelefone" class="filter-input">
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn-limpar">Limpar</button>
+                        <button type="button" id="btnLimpar" class="btn-limpar">Limpar</button>
                         <a th:href="@{/cadastro-fornecedores}" class="btn-padrao">+ Novo fornecedor</a>
                     </div>
                 </form>
@@ -68,44 +68,27 @@
         <section class="table-content-scroll">
             <table>
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome fornecedor</th>
-                        <th>E-mail</th>
-                        <th>Telefone</th>
-                        <th>CNPJ</th>
-                        <th>Status</th>
-                        <th>Ações</th>
-                    </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome fornecedor</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>CNPJ</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
                 </thead>
-                <tbody>
-                    <tr th:each="fornecedor : ${listaFornecedores}">
-                        <td th:text="${fornecedor.id}">1</td>
-                        <td th:text="${fornecedor.razaoSocial}">Fornecedor A</td>
-                        <td th:text="${fornecedor.email}">fornecedorA@email.com</td>
-                        <td th:text="${fornecedor.telefone}">(11) 9999-8888</td>
-                        <td th:text="${fornecedor.cnpj}">12.345.678/0001-90</td>
-                        <td>
-                            <span class="status-badge"
-                                  th:classappend="${fornecedor.status?.name() == 'ATIVO' ? 'status-ativo' : (fornecedor.status?.name() == 'PAUSADO' ? 'status-pausado' : 'status-descontinuado')}"
-                                  th:text="${fornecedor.status?.name() == 'ATIVO' ? 'Contrato Ativo' : (fornecedor.status?.name() == 'PAUSADO' ? 'Contrato Pausado' : 'Contrato Encerrado')}">
-                            </span>
-                        </td>
-                        <td class="actions">
-                            <a th:href="@{/visualizar-fornecedor(id=${fornecedor.id})}" class="btn-action btn-view" title="Visualizar Detalhes">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr th:if="${#lists.isEmpty(listaFornecedores)}">
-                        <td colspan="7" style="text-align: center; padding: 2rem; color: #666;">
-                            Nenhum fornecedor cadastrado no banco de dados.
-                        </td>
-                    </tr>
+                <tbody id="tabelaFornecedores">
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 2rem; color: #666;">
+                        Carregando fornecedores...
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </section>
     </main>
     <script th:src="@{/js/theme.js}"></script>
+    <script th:src="@{/js/filtrosFornecedores.js}"></script>
 </body>
 </html>
