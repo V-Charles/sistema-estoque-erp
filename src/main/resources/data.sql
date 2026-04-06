@@ -19,3 +19,5 @@ VALUES ('MONITORES', '2024-01-15', 'Monitor Gamer 27 polegadas 144hz', 1, 'Monit
 
 INSERT INTO produtos (categoria, data_cadastro, descricao, fornecedor_id, nome, preco_custo, preco_venda, quantidade_minimo, quantidade_total_estoque, status)
 VALUES ('PERIFERICOS', '2023-11-20', 'Mouse antigo com fio', 2, 'Mouse Office', 15.00, 35.00, 50, 0, 'DESCONTINUADO');
+
+INSERT INTO usuarios (nome, login, senha, ativo, perfil) VALUES ('Administrador', 'admin', '123456', true, 'GERENTE');
