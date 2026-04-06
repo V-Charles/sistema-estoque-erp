@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FornecedorController {
@@ -35,7 +36,15 @@ public class FornecedorController {
     }
 
     @GetMapping("/visualizar-fornecedor")
-    public String paginaVisualizarFornecedor(){
+    public String paginaVisualizarFornecedor(@RequestParam("id") Integer id, Model model){
+        br.com.vinicius.estoque.model.Fornecedor fornecedor = fornecedorService.buscarPorId(id);
+        model.addAttribute("fornecedor", fornecedor);
         return "visualizacaoFornecedor";
+    }
+
+    @PostMapping("/fornecedores/atualizar")
+    public String atualizarFornecedor(br.com.vinicius.estoque.model.Fornecedor fornecedor){
+        fornecedorService.atualizar(fornecedor);
+        return "redirect:/fornecedores";
     }
 }

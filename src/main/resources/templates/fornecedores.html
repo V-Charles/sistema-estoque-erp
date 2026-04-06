@@ -87,9 +87,8 @@
                         <td th:text="${fornecedor.cnpj}">12.345.678/0001-90</td>
                         <td>
                             <span class="status-badge"
-                                  th:classappend="${fornecedor.ativo ? 'status-ativo' : 'status-descontinuado'}"
-                                  th:text="${fornecedor.ativo ? 'Contrato Ativo' : 'Contrato Encerrado'}">
-                                Contrato Ativo
+                                  th:classappend="${fornecedor.status?.name() == 'ATIVO' ? 'status-ativo' : (fornecedor.status?.name() == 'PAUSADO' ? 'status-pausado' : 'status-descontinuado')}"
+                                  th:text="${fornecedor.status?.name() == 'ATIVO' ? 'Contrato Ativo' : (fornecedor.status?.name() == 'PAUSADO' ? 'Contrato Pausado' : 'Contrato Encerrado')}">
                             </span>
                         </td>
                         <td class="actions">

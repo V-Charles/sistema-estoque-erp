@@ -22,18 +22,18 @@ public class Fornecedor {
     @Column(length = 20)
     private String telefone;
 
-    @Column(nullable = false)
-    private boolean ativo;
+    @Enumerated(EnumType.STRING)
+    private StatusFornecedor status;
 
     public Fornecedor() { }
 
-    public Fornecedor(Integer id, String razaoSocial, String cnpj, String email, String telefone, boolean ativo) {
+    public Fornecedor(Integer id, String razaoSocial, String cnpj, String email, String telefone, StatusFornecedor status) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.email = email;
         this.telefone = telefone;
-        this.ativo = ativo;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -76,11 +76,11 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 
-    public boolean isAtivo() {
-        return ativo;
+    public StatusFornecedor getStatus() {
+        return status;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setStatus(StatusFornecedor status) {
+        this.status = status;
     }
 }

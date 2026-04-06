@@ -1,11 +1,11 @@
-INSERT INTO fornecedores (ativo, cnpj, email, razao_social, telefone)
-VALUES (true, '12.345.678/0001-99', 'contato@worldtech.com.br', 'World Tech Importações', '(11) 99999-9999');
+INSERT INTO fornecedores (status, cnpj, email, razao_social, telefone)
+VALUES ('ATIVO', '12.345.678/0001-99', 'contato@worldtech.com.br', 'World Tech Importações', '(11) 99999-9999');
 
-INSERT INTO fornecedores (ativo, cnpj, email, razao_social, telefone)
-VALUES (true, '98.765.432/0001-88', 'vendas@kabum.com.br', 'Kabum Componentes', '(11) 88888-8888');
+INSERT INTO fornecedores (status, cnpj, email, razao_social, telefone)
+VALUES ('PAUSADO', '98.765.432/0001-88', 'vendas@kabum.com.br', 'Kabum Componentes', '(11) 88888-8888');
 
-INSERT INTO fornecedores (ativo, cnpj, email, razao_social, telefone)
-VALUES (false, '11.222.333/0001-44', 'falencia@chinaimp.com', 'China Imp. (Inativo)', '(11) 77777-7777');
+INSERT INTO fornecedores (status, cnpj, email, razao_social, telefone)
+VALUES ('ENCERRADO', '11.222.333/0001-44', 'falencia@chinaimp.com', 'China Imp. (Inativo)', '(11) 77777-7777');
 
 
 INSERT INTO produtos (categoria, data_cadastro, descricao, fornecedor_id, nome, preco_custo, preco_venda, quantidade_minimo, quantidade_total_estoque, status)

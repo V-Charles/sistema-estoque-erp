@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('formEdicao');
     const btnSalvar = document.getElementById('btnSalvar');
-    const editIcons = document.querySelectorAll('.edit-icon');
 
+    if (!form || !btnSalvar) return;
+
+    const editIcons = document.querySelectorAll('.edit-icon');
     const formControls = form.querySelectorAll('.form-input:not([readonly]), input[type="radio"]');
 
     formControls.forEach(control => {
@@ -56,7 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
             control.removeAttribute('disabled');
         });
 
-        const statusVisual = document.querySelector('input[name="statusVisual"]:checked').value;
-        document.getElementById('statusReal').value = (statusVisual === 'ativo');
+        const statusVisualEl = document.querySelector('input[name="statusVisual"]:checked');
+        const statusRealEl = document.getElementById('statusReal');
+
+        if (statusVisualEl && statusRealEl) {
+            statusRealEl.value = (statusVisualEl.value === 'ativo');
+        }
     });
 });

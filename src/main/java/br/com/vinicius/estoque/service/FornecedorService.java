@@ -1,6 +1,7 @@
 package br.com.vinicius.estoque.service;
 
 import br.com.vinicius.estoque.model.Fornecedor;
+import br.com.vinicius.estoque.model.StatusFornecedor;
 import br.com.vinicius.estoque.repository.FornecedorRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class FornecedorService {
         validarCamposObrigatorios(fornecedor);
         limparFormatacao(fornecedor);
 
-        fornecedor.setAtivo(true);
+        fornecedor.setStatus(StatusFornecedor.ATIVO);
         return fornecedorRepository.save(fornecedor);
     }
 
@@ -36,6 +37,11 @@ public class FornecedorService {
         limparFormatacao(fornecedor);
 
         return fornecedorRepository.save(fornecedor);
+    }
+
+    public Fornecedor buscarPorId(Integer id){
+        return fornecedorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Forncedor não encontrado com o ID: " + id));
     }
 
     private void validarCamposObrigatorios(Fornecedor f) {
