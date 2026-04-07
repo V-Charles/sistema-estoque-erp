@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let todasMovimentacoes = [];
     const tbody = document.getElementById('tabelaMovimentacoes');
 
+    const filtroEntrada = document.getElementById('filtroEntrada');
+    const filtroSaida = document.getElementById('filtroSaida');
+    const filtroAjuste = document.getElementById('filtroAjuste');
+    const filtroId = document.getElementById('filtroId');
+    const filtroNome = document.getElementById('filtroNome');
+    const filtroFornecedor = document.getElementById('filtroFornecedor');
+    const btnLimpar = document.getElementById('btnLimpar');
+
     fetch('/api/movimentacoes')
         .then(response => response.json())
         .then(data => {
@@ -10,15 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
             renderizarTabela(todasMovimentacoes);
         })
         .catch(error => {
-            console.error("Erro na API de Movimentações:", error);
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem; color:red;">Erro ao carregar os dados.</td></tr>';
+            console.error("Erro na API:", error);
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem; color:#c62828;">Erro ao carregar os dados.</td></tr>';
         });
 
     function renderizarTabela(lista) {
         tbody.innerHTML = '';
 
         if (lista.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem; color:#666;">Nenhuma movimentação registrada.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem; color:#666;">Nenhuma movimentação encontrada.</td></tr>';
             return;
         }
 
@@ -47,4 +55,67 @@ document.addEventListener('DOMContentLoaded', function() {
             tbody.appendChild(tr);
         });
     }
+
+    function aplicarFiltros() {
+        const termoId = filtroId.value.trim();
+        const termoNome = filtroNome.value.trim().toLowerCase();
+        const termoFornecedor = filtroFornecedor.value.trim().toLowerCase();
+
+        const querEntrada = filtroEntrada.checked;
+        const querSaida = filtroSaida.checked;
+        const querAjuste = filtroAjuste.checked;
+
+        const filtrarPorTipo = querEntrada || querSaida || querAjuste;
+
+        const listaFiltrada = todasMovimentacoes.filter(mov => {
+
+            let passaTipo = true;
+            if (filtrarPorTipo) {
+                passaTipo = (querEntrada && mov.tipoMovimentacao === 'ENTRADA') ||
+                            (querSaida && mov.tipoMovimentacao === 'SAIDA') ||
+                            (querAjuste && mov.tipoMovimentacao === 'AJUSTE');
+            }
+
+            let passaId = true;
+            if (termoId !== '') {
+                passaId = (mov.id.toString() === termoId);
+            }
+
+            let passaNome = true;
+            if (termoNome !== '') {
+                const nomeProd = mov.produto ? mov.produto.nome.toLowerCase() : "";
+                passaNome = nomeProd.includes(termoNome);
+            }
+
+            let passaFornecedor = true;
+            if (termoFornecedor !== '') {
+                const nomeForn = (mov.produto && mov.produto.fornecedor) ? mov.produto.fornecedor.razaoSocial.toLowerCase() : "";
+                passaFornecedor = nomeForn.includes(termoFornecedor);
+            }
+
+            return passaTipo && passaId && passaNome && passaFornecedor;
+        });
+
+        renderizarTabela(listaFiltrada);
+    }
+
+    filtroEntrada.addEventListener('change', aplicarFiltros);
+    filtroSaida.addEventListener('change', aplicarFiltros);
+    filtroAjuste.addEventListener('change', aplicarFiltros);
+
+    filtroId.addEventListener('input', aplicarFiltros);
+    filtroNome.addEventListener('input', aplicarFiltros);
+    filtroFornecedor.addEventListener('input', aplicarFiltros);
+
+    btnLimpar.addEventListener('click', function() {
+        filtroEntrada.checked = false;
+        filtroSaida.checked = false;
+        filtroAjuste.checked = false;
+
+        filtroId.value = '';
+        filtroNome.value = '';
+        filtroFornecedor.value = '';
+
+        renderizarTabela(todasMovimentacoes);
+    });
 });
