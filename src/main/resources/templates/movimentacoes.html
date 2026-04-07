@@ -45,32 +45,32 @@
                 <h1>Movimentações</h1>
             </div>
             <div class="filter-bar">
-                <form class="search-group">
+                <form class="search-group" onsubmit="event.preventDefault();">
                     <div class="input-wrapper checkbox-group">
                         <label>
-                            <input type="checkbox" id="entrada"> Entrada
+                            <input type="checkbox" id="filtroEntrada"> Entrada
                         </label>
                         <label>
-                            <input type="checkbox" id="saida"> Saída
+                            <input type="checkbox" id="filtroSaida"> Saída
                         </label>
                         <label>
-                            <input type="checkbox" id="ajuste"> Ajuste
+                            <input type="checkbox" id="filtroAjuste"> Ajuste
                         </label>
                     </div>
                     <div class="input-wrapper small">
                         <label>ID</label>
-                        <input type="number" class="filter-input">
+                        <input type="number" id="filtroId" class="filter-input">
                     </div>
                     <div class="input-wrapper">
                         <label>Nome</label>
-                        <input type="text" class="filter-input">
+                        <input type="text" id="filtroNome" class="filter-input" placeholder="Nome do produto">
                     </div>
                     <div class="input-wrapper">
                         <label>Fornecedor</label>
-                        <input type="text" class="filter-input">
+                        <input type="text" id="filtroFornecedor" class="filter-input" placeholder="Nome do fornecedor">
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn-limpar">Limpar</button>
+                        <button type="button" id="btnLimpar" class="btn-limpar">Limpar</button>
                     </div>
                 </form>
             </div>
@@ -87,137 +87,10 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabelaMovimentacoes">
                 <tr>
-                    <td>1</td>
-                    <td>Entrada</td>
-                    <td>Produto A</td>
-                    <td>Fornecedor A</td>
-                    <td>100</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Saída</td>
-                    <td>Produto B</td>
-                    <td>Fornecedor B</td>
-                    <td>50</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Entrada</td>
-                    <td>Produto C</td>
-                    <td>Fornecedor C</td>
-                    <td>200</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Ajuste</td>
-                    <td>Produto D</td>
-                    <td>Fornecedor D</td>
-                    <td>10</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Entrada</td>
-                    <td>Produto E</td>
-                    <td>Fornecedor E</td>
-                    <td>62</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Saída</td>
-                    <td>Produto F</td>
-                    <td>Fornecedor F</td>
-                    <td>45</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Entrada</td>
-                    <td>Produto G</td>
-                    <td>Fornecedor G</td>
-                    <td>56</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Entrada</td>
-                    <td>Produto H</td>
-                    <td>Fornecedor H</td>
-                    <td>67</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Saída</td>
-                    <td>Produto I</td>
-                    <td>Fornecedor I</td>
-                    <td>78</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Saída</td>
-                    <td>Produto J</td>
-                    <td>Fornecedor J</td>
-                    <td>89</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Entrada</td>
-                    <td>Produto K</td>
-                    <td>Fornecedor K</td>
-                    <td>90</td>
-                    <td class="actions">
-                        <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view" title="Visualizar Detalhes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                        </a>
+                    <td colspan="6" style="text-align: center; padding: 2rem; color: #666;">
+                        Carregando movimentações...
                     </td>
                 </tr>
                 </tbody>
@@ -225,5 +98,6 @@
         </section>
     </main>
     <script th:src="@{/js/theme.js}"></script>
+    <script th:src="@{/js/filtrosMovimentacoes.js}"></script>
 </body>
 </html>

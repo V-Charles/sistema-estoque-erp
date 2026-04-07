@@ -1,5 +1,6 @@
 package br.com.vinicius.estoque.controller;
 
+import br.com.vinicius.estoque.model.Movimentacao;
 import br.com.vinicius.estoque.model.Produto;
 import br.com.vinicius.estoque.model.TipoMovimentacao;
 import br.com.vinicius.estoque.model.Usuario;
@@ -10,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 public class MovimentacaoController {
@@ -25,8 +29,13 @@ public class MovimentacaoController {
 
     @GetMapping("/movimentacoes")
     public String paginaMovimentacoes(Model model){
-        model.addAttribute("listaMovimentacoes", estoqueService.listarTodas());
         return "movimentacoes";
+    }
+
+    @GetMapping("/api/movimentacoes")
+    @ResponseBody
+    public List<Movimentacao> listarMovimentacoesApi(){
+        return estoqueService.listarTodas();
     }
 
     @GetMapping("/registra-movimentacao")
