@@ -88,4 +88,9 @@ public class EstoqueService {
 
         return realizarMovimentacao(mov);
     }
+
+    public Movimentacao buscarMovimentacaoPorId(Integer id){
+        return movimentacaoRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Movimentação não encontrada."));
+    }
 }

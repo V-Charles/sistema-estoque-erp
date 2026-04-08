@@ -45,54 +45,52 @@
                 <h1>Visualização de Movimentação</h1>
             </div>
             <section class="form-card">
-                <form method="">
-                    <div class="form-grid">
-                        <div class="form-column">
-                            <div class="input-wrapper">
-                                <label for="nome-produto">Nome do Produto</label>
-                                <input type="text" id="nome-produto" name="nome-produto" class="form-input" required>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="nome-fornecedor">Nome do Fornecedor</label>
-                                <input type="text" id="nome-fornecedor" name="nome-fornecedor" class="form-input" required>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="tipo-movimentacao">Tipo de movimentação</label>
-                                <div class="input-with-prefix">
-                                    <input type="text" id="tipo-movimentacao" class="form-input" placeholder="Entrada, Saída ou Ajuste">
-                                </div>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="valor-unitario">Valor Unitário (Venda)</label>
-                                <div class="input-with-prefix">
-                                    <span>R$</span>
-                                    <input type="number" id="valor-unitario" class="form-input" placeholder="0,00" min="0.01" step="0.01" required>
-                                </div>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="data-movimentacao">Data da movimentação</label>
-                                <input type="date" id="data-movimentacao" name="data-movimentacao" class="form-input">
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="input-wrapper">
+                            <label for="nome-produto">Nome do Produto</label>
+                            <input type="text" id="nome-produto" class="form-input" th:value="${movimentacao.produto.nome}" readonly>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="nome-fornecedor">Nome do Fornecedor</label>
+                            <input type="text" id="nome-fornecedor" class="form-input" th:value="${movimentacao.produto.fornecedor.razaoSocial}" readonly>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="tipo-movimentacao">Tipo de movimentação</label>
+                            <input type="text" id="tipo-movimentacao" class="form-input" th:value="${movimentacao.tipoMovimentacao}" readonly style="font-weight: bold;">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="valor-unitario">Valor Unitário Referência</label>
+                            <div class="input-with-prefix">
+                                <span>R$</span>
+                                <input type="text" id="valor-unitario" class="form-input"
+                                       th:value="${movimentacao.tipoMovimentacao.name() == 'ENTRADA' ? #numbers.formatDecimal(movimentacao.produto.precoCusto, 1, 'POINT', 2, 'COMMA') : (movimentacao.tipoMovimentacao.name() == 'SAIDA' ? #numbers.formatDecimal(movimentacao.produto.precoVenda, 1, 'POINT', 2, 'COMMA') : '0,00')}"
+                                       readonly>
                             </div>
                         </div>
-                        <div class="form-column">
-                            <div class="input-wrapper full-width">
-                                <label for="observacao">Observação</label>
-                                <textarea id="observacao" name="observacao" class="form-input" rows="5" required></textarea>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="nome-usuario">Usuário responsável</label>
-                                <input type="text" id="nome-usuario" name="nome-usuario" class="form-input" required>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="quantidade-movimentada">Quantidade movimentada</label>
-                                <input type="number" id="quantidade-movimentada" name="quantidade-movimentada" class="form-input" required>
-                            </div>
+                        <div class="input-wrapper">
+                            <label for="data-movimentacao">Data/Hora da movimentação</label>
+                            <input type="text" id="data-movimentacao" class="form-input" th:value="${#temporals.format(movimentacao.dataHora, 'dd/MM/yyyy HH:mm')}" readonly>
                         </div>
                     </div>
-                    <div class="form-actions">
-                        <a th:href="@{/movimentacoes}" class="btn-padrao">Voltar</a>
+                    <div class="form-column">
+                        <div class="input-wrapper full-width">
+                            <label for="observacao">Observação</label>
+                            <textarea id="observacao" class="form-input" rows="5" th:text="${movimentacao.observacao}" readonly></textarea>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="nome-usuario">Usuário responsável</label>
+                            <input type="text" id="nome-usuario" class="form-input" th:value="${movimentacao.usuario.nome}" readonly>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="quantidade-movimentada">Quantidade movimentada</label>
+                            <input type="text" id="quantidade-movimentada" class="form-input" th:value="${movimentacao.quantidade}" readonly>
+                        </div>
                     </div>
-                </form>
+                </div>
+                <div class="form-actions">
+                    <a th:href="@{/movimentacoes}" class="btn-padrao">Voltar</a>
+                </div>
             </section>
         </div>
     </main>

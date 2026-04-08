@@ -78,7 +78,9 @@ public class MovimentacaoController {
     }
 
     @GetMapping("/visualizar-movimentacao")
-    public String paginaVisualizarMovimentacao(){
+    public String paginaVisualizarMovimentacao(@RequestParam("id") Integer id, Model model){
+        Movimentacao movimentacao = estoqueService.buscarMovimentacaoPorId(id);
+        model.addAttribute("movimentacao", movimentacao);
         return "visualizacaoMovimentacao";
     }
 }
