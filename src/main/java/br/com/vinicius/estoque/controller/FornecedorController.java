@@ -1,6 +1,8 @@
 package br.com.vinicius.estoque.controller;
 
 import br.com.vinicius.estoque.model.Fornecedor;
+import br.com.vinicius.estoque.model.Movimentacao;
+import br.com.vinicius.estoque.repository.MovimentacaoRepository;
 import br.com.vinicius.estoque.service.FornecedorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +17,11 @@ import java.util.List;
 public class FornecedorController {
 
     private final FornecedorService fornecedorService;
+    private final MovimentacaoRepository movimentacaoRepository;
 
-    public FornecedorController(FornecedorService fornecedorService){
+    public FornecedorController(FornecedorService fornecedorService, MovimentacaoRepository movimentacaoRepository){
         this.fornecedorService = fornecedorService;
+        this.movimentacaoRepository = movimentacaoRepository;
     }
 
     @GetMapping("/fornecedores")
@@ -45,13 +49,17 @@ public class FornecedorController {
 
     @GetMapping("/visualizar-fornecedor")
     public String paginaVisualizarFornecedor(@RequestParam("id") Integer id, Model model){
-        br.com.vinicius.estoque.model.Fornecedor fornecedor = fornecedorService.buscarPorId(id);
+        Fornecedor fornecedor = fornecedorService.buscarPorId(id);
+
+        List<Movimentacao> historico = movimentacaoRepository.findByProdutoFornecedorIdOrderByDataHoraDesc(id);
+
         model.addAttribute("fornecedor", fornecedor);
+        model.addAttribute("listaMovimentacoes", historico);
         return "visualizacaoFornecedor";
     }
 
     @PostMapping("/fornecedores/atualizar")
-    public String atualizarFornecedor(br.com.vinicius.estoque.model.Fornecedor fornecedor){
+    public String atualizarFornecedor(Fornecedor fornecedor){
         fornecedorService.atualizar(fornecedor);
         return "redirect:/fornecedores";
     }

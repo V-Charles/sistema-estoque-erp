@@ -1,6 +1,8 @@
 package br.com.vinicius.estoque.controller;
 
+import br.com.vinicius.estoque.model.Movimentacao;
 import br.com.vinicius.estoque.model.Produto;
+import br.com.vinicius.estoque.repository.MovimentacaoRepository;
 import br.com.vinicius.estoque.service.FornecedorService;
 import br.com.vinicius.estoque.service.ProdutoService;
 import org.springframework.stereotype.Controller;
@@ -17,10 +19,12 @@ public class ProdutoController {
 
     private final ProdutoService produtoService;
     private final FornecedorService fornecedorService;
+    private final MovimentacaoRepository movimentacaoRepository;
 
-    public ProdutoController(ProdutoService produtoService, FornecedorService fornecedorService){
+    public ProdutoController(ProdutoService produtoService, FornecedorService fornecedorService, MovimentacaoRepository movimentacaoRepository){
         this.produtoService = produtoService;
         this.fornecedorService = fornecedorService;
+        this.movimentacaoRepository = movimentacaoRepository;
     }
 
     @GetMapping("/produtos")
@@ -53,9 +57,12 @@ public class ProdutoController {
     public String paginaVisualizarProduto(@RequestParam("id") Integer id, Model model){
         Produto produto = produtoService.buscarPorId(id);
 
+        List<Movimentacao> historico = movimentacaoRepository.findByProdutoIdOrderByDataHoraDesc(id);
+
         model.addAttribute("produto", produto);
         model.addAttribute("listaCategorias", br.com.vinicius.estoque.model.Categoria.values());
         model.addAttribute("listaFornecedores", fornecedorService.listarTodos());
+        model.addAttribute("listaMovimentacoes", historico);
         return "visualizacaoProduto";
     }
 
