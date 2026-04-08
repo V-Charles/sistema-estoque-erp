@@ -41,20 +41,20 @@
     <main>
         <div class="dashboard-greeting">
             <h1>Olá, usuário!</h1>
-            <p>Bem - vindo ao sistema de controle de estoque.</p>
+            <p>Bem-vindo ao sistema de controle de estoque.</p>
         </div>
 
         <div class="summary-cards">
             <div class="summary-card">
-                <span class="value">--</span>
+                <span class="value" th:text="${totalProdutos}">0</span>
                 <span class="label">Produtos cadastrados</span>
             </div>
             <div class="summary-card">
-                <span class="value">--</span>
+                <span class="value" th:text="${totalFornecedores}">0</span>
                 <span class="label">Fornecedores cadastrados</span>
             </div>
             <div class="summary-card">
-                <span class="value">--</span>
+                <span class="value" th:text="'R$ ' + ${#numbers.formatDecimal(valorTotalEstoque, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</span>
                 <span class="label">Valor total em estoque</span>
             </div>
         </div>
@@ -74,70 +74,58 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Entrada</td>
-                            <td>Produto A</td>
-                            <td>Fornecedor A</td>
-                            <td>324</td>
+                        <tr th:each="mov : ${ultimasMovimentacoes}">
+                            <td th:text="${mov.id}">1</td>
+                            <td th:text="${mov.tipoMovimentacao}"
+                                th:style="${mov.tipoMovimentacao.name() == 'ENTRADA' ? 'color: #2e7d32; font-weight: bold;' : (mov.tipoMovimentacao.name() == 'SAIDA' ? 'color: #c62828; font-weight: bold;' : 'color: #f57f17; font-weight: bold;')}">
+                            </td>
+                            <td th:text="${mov.produto != null ? mov.produto.nome : 'N/A'}">Produto</td>
+                            <td th:text="${mov.produto != null and mov.produto.fornecedor != null ? mov.produto.fornecedor.razaoSocial : 'N/A'}">Fornecedor</td>
+                            <td th:text="${mov.quantidade}">0</td>
                             <td class="actions">
-                                <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view">
+                                <a th:href="@{/visualizar-movimentacao(id=${mov.id})}" class="btn-action btn-view" title="Visualizar">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Saída</td>
-                            <td>Produto B</td>
-                            <td>Fornecedor B</td>
-                            <td>1.456</td>
-                            <td class="actions">
-                                <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Ajuste</td>
-                            <td>Produto C</td>
-                            <td>Fornecedor C</td>
-                            <td>52</td>
-                            <td class="actions">
-                                <a th:href="@{/visualizar-movimentacao}" class="btn-action btn-view">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                </a>
-                            </td>
+                        <tr th:if="${#lists.isEmpty(ultimasMovimentacoes)}">
+                            <td colspan="6" style="text-align: center; color: #666; padding: 1rem;">Nenhuma movimentação registrada no sistema.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
         <div class="dashboard-section">
             <h2>Alertas</h2>
             <div class="alerts-grid">
                 <div class="alert-card">
                     <div class="alert-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                        Os produtos abaixo estão com quantidades baixas:
+                        Os produtos abaixo estão com quantidades baixas (Abaixo do Mínimo):
                     </div>
                     <div class="alert-content">
-                        <p><strong>Produto 1</strong></p>
-                        <p><strong>Produto 2</strong></p>
-                        <p><strong>Produto 3</strong></p>
+                        <p th:each="prod : ${produtosBaixoEstoque}">
+                            <strong th:text="${prod.nome} + ' (Atual: ' + ${prod.quantidadeTotalEstoque} + ' | Mínimo: ' + ${prod.quantidadeMinimo} + ')'">Produto</strong>
+                        </p>
+                        <p th:if="${#lists.isEmpty(produtosBaixoEstoque)}" style="color: #2e7d32;">
+                            <svg style="vertical-align: middle; margin-right: 5px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            Estoque saudável! Nenhum produto abaixo do limite.
+                        </p>
                     </div>
                 </div>
                 <div class="alert-card">
                     <div class="alert-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                        Os fornecedores abaixo estão temporariamente inativos
+                        Os fornecedores abaixo requerem atenção (Pausados/Descontinuados):
                     </div>
                     <div class="alert-content">
-                        <p><strong>Fornecedor A</strong></p>
-                        <p><strong>Fornecedor B</strong></p>
-                        <p><strong>Fornecedor C</strong></p>
+                        <p th:each="forn : ${fornecedoresInativos}">
+                            <strong th:text="${forn.razaoSocial} + ' - ' + ${forn.status}">Fornecedor</strong>
+                        </p>
+                        <p th:if="${#lists.isEmpty(fornecedoresInativos)}" style="color: #2e7d32;">
+                            <svg style="vertical-align: middle; margin-right: 5px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            Todos os contratos estão ativos.
+                        </p>
                     </div>
                 </div>
             </div>
