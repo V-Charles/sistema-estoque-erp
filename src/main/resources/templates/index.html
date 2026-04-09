@@ -11,14 +11,20 @@
     <main class="login-container">
         <div class="login-card">
             <h1>Login</h1>
-            <form th:action="@{/dashboard}" method="get">
+            <div th:if="${param.error}" class="alert alert-danger" style="color: #c62828; text-align: center; margin-bottom: 15px; font-weight: bold;">
+                E-mail ou senha incorretos.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success" style="color: #2e7d32; text-align: center; margin-bottom: 15px; font-weight: bold;">
+                Você saiu do sistema com sucesso.
+            </div>
+            <form th:action="@{/login}" method="POST">
                 <div class="input-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" class="valida-email" placeholder="usuario@gmail.com" required>
+                    <label for="username">E-mail:</label>
+                    <input type="email" id="username" name="username" class="valida-email" placeholder="usuario@gmail.com" required>
                 </div>
                 <div class="input-group">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" class="valida-senha" placeholder="********" minlength="8" required>
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" class="valida-senha" placeholder="********" minlength="8" required>
                 </div>
                 <button type="submit" class="btn-login">Entrar</button>
             </form>
