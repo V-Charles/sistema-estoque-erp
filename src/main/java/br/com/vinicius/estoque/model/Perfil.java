@@ -2,7 +2,7 @@ package br.com.vinicius.estoque.model;
 
 public enum Perfil {
 
-    GERENTE("Gerente"),
+    ADMIN("Administrador"),
     ESTOQUISTA("Estoquista");
 
     private final String descricao;

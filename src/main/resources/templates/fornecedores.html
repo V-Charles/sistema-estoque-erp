@@ -60,7 +60,7 @@
                     </div>
                     <div class="button-group">
                         <button type="button" id="btnLimpar" class="btn-limpar">Limpar</button>
-                        <a th:href="@{/cadastro-fornecedores}" class="btn-padrao">+ Novo fornecedor</a>
+                        <a th:href="@{/cadastro-fornecedores}" class="btn-padrao" sec:authorize="hasRole('ADMIN')">+ Novo fornecedor</a>
                     </div>
                 </form>
             </div>
