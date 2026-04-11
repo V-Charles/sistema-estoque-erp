@@ -23,13 +23,38 @@ document.addEventListener("DOMContentLoaded", () => {
         etapaMostrar.classList.add('active');
     };
 
-    btnEnviarCodigo.addEventListener('click', () => {
+    btnEnviarCodigo.addEventListener('click', async (e) => {
+        e.preventDefault();
         const emailValue = inputEmail.value.trim();
-        
+
         if (emailValue && !inputEmail.classList.contains('input-error')) {
-            emailDisplay.innerText = emailValue;
-            mudarEtapa(etapa1, etapa2);
-            setTimeout(() => otpBoxes[0].focus(), 100);
+
+            const textoOriginal = btnEnviarCodigo.innerText;
+            btnEnviarCodigo.innerText = "Enviando e-mail...";
+            btnEnviarCodigo.disabled = true;
+
+            try {
+                const response = await fetch('/api/recuperacao/solicitar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailValue })
+                });
+
+                if (response.ok) {
+                    emailDisplay.innerText = emailValue;
+                    mudarEtapa(etapa1, etapa2);
+                    setTimeout(() => otpBoxes[0].focus(), 100);
+                } else {
+                    const errorMsg = await response.text();
+                    alert("Erro: " + errorMsg);
+                }
+            } catch (error) {
+                alert("Erro ao conectar com o servidor.");
+            } finally {
+                btnEnviarCodigo.innerText = textoOriginal;
+                btnEnviarCodigo.disabled = false;
+            }
+
         } else {
             inputEmail.focus();
         }
@@ -43,14 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     otpBoxes.forEach((box, index) => {
         box.addEventListener('input', (e) => {
-
             if (e.target.value.length === 1 && index < otpBoxes.length - 1) {
                 otpBoxes[index + 1].focus();
             }
         });
 
         box.addEventListener('keydown', (e) => {
-
             if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
                 otpBoxes[index - 1].focus();
             }
@@ -61,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const colado = e.clipboardData.getData('text').trim();
             const caracteres = colado.substring(0, 6).split('');
             caracteres.forEach((char, i) => {
-
                 if (otpBoxes[i]) {
                     otpBoxes[i].value = char;
                 }
@@ -71,27 +93,85 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    btnValidarCodigo.addEventListener('click', () => {
+    btnValidarCodigo.addEventListener('click', async (e) => {
+        e.preventDefault();
         const codigoDigitado = Array.from(otpBoxes).map(box => box.value).join('');
+        const emailValue = inputEmail.value.trim();
 
         if (codigoDigitado.length === 6) {
-            mudarEtapa(etapa2, etapa3);
+
+            btnValidarCodigo.innerText = "Validando...";
+            btnValidarCodigo.disabled = true;
+
+            try {
+                const response = await fetch('/api/recuperacao/validar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailValue, codigo: codigoDigitado })
+                });
+
+                if (response.ok) {
+                    mudarEtapa(etapa2, etapa3);
+                } else {
+                    const errorMsg = await response.text();
+                    alert("Erro: " + errorMsg);
+                }
+            } catch (error) {
+                alert("Erro ao conectar com o servidor.");
+            } finally {
+                btnValidarCodigo.innerText = "Validar Código";
+                btnValidarCodigo.disabled = false;
+            }
+
         } else {
             alert('Por favor, preencha os 6 dígitos do código.');
         }
     });
 
-    btnRedefinirSenha.addEventListener('click', () => {
+    btnRedefinirSenha.addEventListener('click', async (e) => {
+        e.preventDefault();
         const s1 = inputNovaSenha.value;
         const s2 = inputConfirmaSenha.value;
+        const emailValue = inputEmail.value.trim();
+        const codigoDigitado = Array.from(otpBoxes).map(box => box.value).join('');
 
         if (s1 && !inputNovaSenha.classList.contains('input-error')) {
             if (s1 === s2) {
-                alert('Senha redefinida com sucesso! Você será redirecionado para o Login.');
-                window.location.href = 'index.html';
+
+                btnRedefinirSenha.innerText = "Salvando...";
+                btnRedefinirSenha.disabled = true;
+
+                try {
+                    const response = await fetch('/api/recuperacao/redefinir', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: emailValue,
+                            codigo: codigoDigitado,
+                            novaSenha: s1
+                        })
+                    });
+
+                    if (response.ok) {
+                        alert('Senha redefinida com sucesso! Você será redirecionado para o Login.');
+                        window.location.href = '/index';
+                    } else {
+                        const errorMsg = await response.text();
+                        alert("Erro: " + errorMsg);
+                        btnRedefinirSenha.innerText = "Redefinir senha";
+                        btnRedefinirSenha.disabled = false;
+                    }
+                } catch (error) {
+                    alert("Erro ao conectar com o servidor.");
+                    btnRedefinirSenha.innerText = "Redefinir senha";
+                    btnRedefinirSenha.disabled = false;
+                }
+
             } else {
                 alert('As senhas não coincidem. Tente novamente.');
             }
+        } else {
+            alert('A senha deve cumprir os requisitos de segurança.');
         }
     });
 });
